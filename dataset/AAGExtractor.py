@@ -610,10 +610,13 @@ def initializer():
 def process_one_file(args):
     fn, feature_schema = args
 
-    extractor = AAGExtractor(fn, feature_schema)
-    out = extractor.process()
-
-    return [str(fn.stem), out]
+    try:
+        extractor = AAGExtractor(fn, feature_schema)
+        out = extractor.process()
+        return [str(fn.stem), out, True]  # 成功标记
+    except Exception as e:
+        print(f"Error processing {fn}: {e}")
+        return [str(fn.stem), None, False]  # 失败标记
 
 
 def main(args):
@@ -642,16 +645,30 @@ def main(args):
         pool.terminate()
         pool.join()
 
-    save_json_data(
-        osp.join(output_path, 'graphs.json'), results)
+    # 统计成功和失败的数量
+    success_count = sum(1 for r in results if r[2])
+    failed_count = sum(1 for r in results if not r[2])
     
-    attr_stat = find_standardization(results)
-    check_zero_std(attr_stat)
-    save_json_data(
-        osp.join(output_path, 'attr_stat.json'), attr_stat)
+    # 只保留成功的结果
+    successful_results = [[r[0], r[1]] for r in results if r[2]]
+    
+    print(f"\n处理完成:")
+    print(f"  成功: {success_count} 个文件")
+    print(f"  跳过: {failed_count} 个文件")
+    print(f"  总计: {len(results)} 个文件")
+
+    if successful_results:
+        save_json_data(
+            osp.join(output_path, 'graphs.json'), successful_results)
+        
+        attr_stat = find_standardization(successful_results)
+        check_zero_std(attr_stat)
+        save_json_data(
+            osp.join(output_path, 'attr_stat.json'), attr_stat)
+    else:
+        print("警告: 没有成功处理的文件，不生成输出文件。")
     
     gc.collect()
-    print(f"Processed {len(results)} files.")
 
 
 if __name__ == '__main__':
