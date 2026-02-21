@@ -7,12 +7,15 @@ from torch import nn
 import numpy as np
 from torch_ema import ExponentialMovingAverage
 from torchmetrics.classification import (
-    MulticlassAccuracy, 
+    MulticlassAccuracy,
+    BinaryAccuracy,
+    BinaryF1Score,
+    BinaryJaccardIndex,
     MulticlassJaccardIndex)
 import wandb
 
 from dataloader.custom27 import Custom27Dataset
-from models.segmentors import AAGNetSegmentor
+from models.inst_segmentors import AAGNetSegmentor
 from utils.misc import seed_torch, init_logger, print_num_params
 
 
@@ -52,13 +55,16 @@ if __name__ == '__main__':
                 "seed": 42,
                 "device": 'cuda',
                 "architecture": "AAGNetGraphEncoder", # recommend: AAGNetGraphEncoder option: GCN SAGE GIN GAT GATv2 DeeperGCN AAGNetGraphEncoder
-                "dataset": "../your_dataset_path",  # CHANGE THIS to your dataset path
+                "dataset": "../myDatasets",  # CHANGE THIS to your dataset path
 
                 "epochs": 100,
                 "lr": 1e-2,
                 "weight_decay": 1e-2,
                 "batch_size": 256,
                 "ema_decay_per_epoch": 1. / 2.,
+                "seg_a": 1.,
+                "inst_a": 1.,
+                "bottom_a": 1.,
                 }
         )
     
@@ -110,14 +116,24 @@ if __name__ == '__main__':
     val_loader = val_dataset.get_dataloader(batch_size=wandb.config['batch_size'], shuffle=False, drop_last=False, pin_memory=True)
 
     seg_loss = nn.CrossEntropyLoss()
+    instance_loss = nn.BCEWithLogitsLoss()
+    bottom_loss = nn.BCEWithLogitsLoss()
     opt = torch.optim.AdamW(model.parameters(), lr=wandb.config['lr'], weight_decay=wandb.config['weight_decay'])
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=wandb.config['epochs'], eta_min=0)
 
     train_seg_acc = MulticlassAccuracy(num_classes=n_classes).to(device)
+    train_inst_acc = BinaryAccuracy().to(device)
+    train_bottom_acc = BinaryAccuracy().to(device)
     train_seg_iou = MulticlassJaccardIndex(num_classes=n_classes).to(device)
+    train_inst_f1 = BinaryF1Score().to(device)
+    train_bottom_iou = BinaryJaccardIndex().to(device)
 
     val_seg_acc = MulticlassAccuracy(num_classes=n_classes).to(device)
+    val_inst_acc = BinaryAccuracy().to(device)
+    val_bottom_acc = BinaryAccuracy().to(device)
     val_seg_iou = MulticlassJaccardIndex(num_classes=n_classes).to(device)
+    val_inst_f1 = BinaryF1Score().to(device)
+    val_bottom_iou = BinaryJaccardIndex().to(device)
 
     iters = len(train_loader)
     ema_decay = wandb.config['ema_decay_per_epoch']**(1/iters)
@@ -133,54 +149,63 @@ if __name__ == '__main__':
         os.mkdir(save_path)
     logger = init_logger(os.path.join(save_path, 'log.txt'))
     
+    seg_a = wandb.config['seg_a']
+    inst_a = wandb.config['inst_a']
+    bottom_a = wandb.config['bottom_a']
+
     for epoch in range(wandb.config['epochs']):
         logger.info(f'------------- Now start epoch {epoch}------------- ')
         model.train()
         train_losses = []
         train_bar = tqdm(train_loader)
         for data in train_bar:
-            graphs = data["graph"].to(device, non_blocking=True)
-            seg_label = graphs.ndata["y"]
-            
-            # Zero the gradients
-            opt.zero_grad()
-            
-            # Forward pass
-            seg_pred = model(graphs)
+            g = data["graph"].to(device, non_blocking=True)
+            inst_label = data["inst_labels"].to(device, non_blocking=True)
+            seg_label = g.ndata["seg_y"]
+            bottom_label = g.ndata["bottom_y"]
 
-            loss = seg_loss(seg_pred, seg_label)
+            opt.zero_grad()
+            seg_pred, inst_pred, bottom_pred = model(g)
+
+            loss = (seg_a * seg_loss(seg_pred, seg_label)
+                    + inst_a * instance_loss(inst_pred, inst_label)
+                    + bottom_a * bottom_loss(bottom_pred, bottom_label))
             train_losses.append(loss.item())
 
             lr = opt.param_groups[0]["lr"]
-            info = "Epoch:%d LR:%f Loss:%f" % (epoch, lr, loss)
-            train_bar.set_description(info)
+            train_bar.set_description("Epoch:%d LR:%f Loss:%f" % (epoch, lr, loss))
 
-            # Backward pass
             loss.backward()
             opt.step()
-            
-            # Update the moving average with the new parameters from the last optimizer step
             ema.update()
-            
+
             train_seg_acc.update(seg_pred, seg_label)
             train_seg_iou.update(seg_pred, seg_label)
-        
+            train_inst_acc.update(inst_pred.sigmoid(), inst_label.int())
+            train_inst_f1.update(inst_pred.sigmoid(), inst_label.int())
+            train_bottom_acc.update(bottom_pred.sigmoid(), bottom_label.int())
+            train_bottom_iou.update(bottom_pred.sigmoid(), bottom_label.int())
+
         scheduler.step()
-        # batch end
         mean_train_loss = np.mean(train_losses).item()
         mean_train_seg_acc = train_seg_acc.compute().item()
         mean_train_seg_iou = train_seg_iou.compute().item()
-        
-        logger.info(f'train_loss : {mean_train_loss}, \
-                      train_seg_acc: {mean_train_seg_acc}, \
-                      train_seg_iou: {mean_train_seg_iou}')
-        wandb.log({'epoch': epoch, 
-                   'train_loss': mean_train_loss, 
-                   'train_seg_acc': mean_train_seg_acc, 
-                   'train_seg_iou': mean_train_seg_iou})
-        
-        train_seg_acc.reset()
-        train_seg_iou.reset()
+        mean_train_inst_acc = train_inst_acc.compute().item()
+        mean_train_inst_f1 = train_inst_f1.compute().item()
+        mean_train_bottom_acc = train_bottom_acc.compute().item()
+        mean_train_bottom_iou = train_bottom_iou.compute().item()
+
+        logger.info(f'train_loss:{mean_train_loss:.4f} seg_acc:{mean_train_seg_acc:.4f} seg_iou:{mean_train_seg_iou:.4f} '
+                    f'inst_acc:{mean_train_inst_acc:.4f} inst_f1:{mean_train_inst_f1:.4f} '
+                    f'bottom_acc:{mean_train_bottom_acc:.4f} bottom_iou:{mean_train_bottom_iou:.4f}')
+        wandb.log({'epoch': epoch, 'train_loss': mean_train_loss,
+                   'train_seg_acc': mean_train_seg_acc, 'train_seg_iou': mean_train_seg_iou,
+                   'train_inst_acc': mean_train_inst_acc, 'train_inst_f1': mean_train_inst_f1,
+                   'train_bottom_acc': mean_train_bottom_acc, 'train_bottom_iou': mean_train_bottom_iou})
+
+        train_seg_acc.reset(); train_seg_iou.reset()
+        train_inst_acc.reset(); train_inst_f1.reset()
+        train_bottom_acc.reset(); train_bottom_iou.reset()
         
         # eval
         with torch.no_grad():
@@ -188,72 +213,101 @@ if __name__ == '__main__':
                 model.eval()
                 val_losses = []
                 for data in tqdm(val_loader):
-                    graphs = data["graph"].to(device)
-                    seg_label = graphs.ndata["y"]
-                    
-                    seg_pred = model(graphs)
-                    loss = seg_loss(seg_pred, seg_label)
+                    g = data["graph"].to(device)
+                    inst_label = data["inst_labels"].to(device)
+                    seg_label = g.ndata["seg_y"]
+                    bottom_label = g.ndata["bottom_y"]
+
+                    seg_pred, inst_pred, bottom_pred = model(g)
+
+                    loss = (seg_a * seg_loss(seg_pred, seg_label)
+                            + inst_a * instance_loss(inst_pred, inst_label)
+                            + bottom_a * bottom_loss(bottom_pred, bottom_label))
                     val_losses.append(loss.item())
 
                     val_seg_acc.update(seg_pred, seg_label)
                     val_seg_iou.update(seg_pred, seg_label)
-                
-                # val end
+                    val_inst_acc.update(inst_pred.sigmoid(), inst_label.int())
+                    val_inst_f1.update(inst_pred.sigmoid(), inst_label.int())
+                    val_bottom_acc.update(bottom_pred.sigmoid(), bottom_label.int())
+                    val_bottom_iou.update(bottom_pred.sigmoid(), bottom_label.int())
+
                 mean_val_loss = np.mean(val_losses).item()
                 mean_val_seg_acc = val_seg_acc.compute().item()
                 mean_val_seg_iou = val_seg_iou.compute().item()
-                
-                logger.info(f'val_loss : {mean_val_loss}, \
-                              val_seg_acc: {mean_val_seg_acc}, \
-                              val_seg_iou: {mean_val_seg_iou}')
-                wandb.log({'epoch': epoch, 
-                           'val_loss': mean_val_loss, 
-                           'val_seg_acc': mean_val_seg_acc, 
-                           'val_seg_iou': mean_val_seg_iou})
-                
-                val_seg_acc.reset()
-                val_seg_iou.reset()
+                mean_val_inst_acc = val_inst_acc.compute().item()
+                mean_val_inst_f1 = val_inst_f1.compute().item()
+                mean_val_bottom_acc = val_bottom_acc.compute().item()
+                mean_val_bottom_iou = val_bottom_iou.compute().item()
+
+                logger.info(f'val_loss:{mean_val_loss:.4f} seg_acc:{mean_val_seg_acc:.4f} seg_iou:{mean_val_seg_iou:.4f} '
+                            f'inst_acc:{mean_val_inst_acc:.4f} inst_f1:{mean_val_inst_f1:.4f} '
+                            f'bottom_acc:{mean_val_bottom_acc:.4f} bottom_iou:{mean_val_bottom_iou:.4f}')
+                wandb.log({'epoch': epoch, 'val_loss': mean_val_loss,
+                           'val_seg_acc': mean_val_seg_acc, 'val_seg_iou': mean_val_seg_iou,
+                           'val_inst_acc': mean_val_inst_acc, 'val_inst_f1': mean_val_inst_f1,
+                           'val_bottom_acc': mean_val_bottom_acc, 'val_bottom_iou': mean_val_bottom_iou})
+
+                val_seg_acc.reset(); val_seg_iou.reset()
+                val_inst_acc.reset(); val_inst_f1.reset()
+                val_bottom_acc.reset(); val_bottom_iou.reset()
 
                 cur_acc = mean_val_seg_iou
                 if cur_acc > best_acc:
                     best_acc = cur_acc
                     logger.info(f'best metric: {cur_acc}, model saved')
-                    torch.save(model.state_dict(), os.path.join(save_path, "weight_%d-epoch.pth"%(epoch)))
+                    torch.save(model.state_dict(), os.path.join(save_path, "weight_%d-epoch.pth" % epoch))
     
     # training end test
     graphs = train_dataset.graphs()
-    test_dataset = Custom27Dataset(root_dir=dataset, graphs=graphs, split='test', 
+    test_dataset = Custom27Dataset(root_dir=dataset, graphs=graphs, split='test',
                                     center_and_scale=False, normalize=True, random_rotate=False,
                                     num_threads=8)
     test_loader = test_dataset.get_dataloader(batch_size=wandb.config['batch_size'], pin_memory=True)
 
     test_seg_acc = MulticlassAccuracy(num_classes=n_classes).to(device)
     test_seg_iou = MulticlassJaccardIndex(num_classes=n_classes).to(device)
+    test_inst_acc = BinaryAccuracy().to(device)
+    test_inst_f1 = BinaryF1Score().to(device)
+    test_bottom_acc = BinaryAccuracy().to(device)
+    test_bottom_iou = BinaryJaccardIndex().to(device)
 
     with torch.no_grad():
         logger.info(f'------------- Now start testing ------------- ')
         model.eval()
         test_losses = []
         for data in tqdm(test_loader):
-            graphs = data["graph"].to(device, non_blocking=True)
-            seg_label = graphs.ndata["y"]
-            
-            # Forward pass
-            seg_pred = model(graphs)
-            loss = seg_loss(seg_pred, seg_label)
+            g = data["graph"].to(device, non_blocking=True)
+            inst_label = data["inst_labels"].to(device, non_blocking=True)
+            seg_label = g.ndata["seg_y"]
+            bottom_label = g.ndata["bottom_y"]
+
+            seg_pred, inst_pred, bottom_pred = model(g)
+
+            loss = (seg_a * seg_loss(seg_pred, seg_label)
+                    + inst_a * instance_loss(inst_pred, inst_label)
+                    + bottom_a * bottom_loss(bottom_pred, bottom_label))
             test_losses.append(loss.item())
-            
+
             test_seg_acc.update(seg_pred, seg_label)
             test_seg_iou.update(seg_pred, seg_label)
-        
-        # batch end
+            test_inst_acc.update(inst_pred.sigmoid(), inst_label.int())
+            test_inst_f1.update(inst_pred.sigmoid(), inst_label.int())
+            test_bottom_acc.update(bottom_pred.sigmoid(), bottom_label.int())
+            test_bottom_iou.update(bottom_pred.sigmoid(), bottom_label.int())
+
         mean_test_loss = np.mean(test_losses).item()
         mean_test_seg_acc = test_seg_acc.compute().item()
         mean_test_seg_iou = test_seg_iou.compute().item()
-        
-        logger.info(f'test_loss : {mean_test_loss}, \
-                      test_seg_acc: {mean_test_seg_acc}, \
-                      test_seg_iou: {mean_test_seg_iou}')
-        wandb.log({'test_loss': mean_test_loss, 
-                   'test_seg_acc': mean_test_seg_acc, 
-                   'test_seg_iou': mean_test_seg_iou})
+        mean_test_inst_acc = test_inst_acc.compute().item()
+        mean_test_inst_f1 = test_inst_f1.compute().item()
+        mean_test_bottom_acc = test_bottom_acc.compute().item()
+        mean_test_bottom_iou = test_bottom_iou.compute().item()
+
+        logger.info(f'test_loss:{mean_test_loss:.4f} seg_acc:{mean_test_seg_acc:.4f} seg_iou:{mean_test_seg_iou:.4f} '
+                    f'inst_acc:{mean_test_inst_acc:.4f} inst_f1:{mean_test_inst_f1:.4f} '
+                    f'bottom_acc:{mean_test_bottom_acc:.4f} bottom_iou:{mean_test_bottom_iou:.4f}')
+        wandb.log({'test_loss': mean_test_loss,
+                   'test_seg_acc': mean_test_seg_acc, 'test_seg_iou': mean_test_seg_iou,
+                   'test_inst_acc': mean_test_inst_acc, 'test_inst_f1': mean_test_inst_f1,
+                   'test_bottom_acc': mean_test_bottom_acc, 'test_bottom_iou': mean_test_bottom_iou})

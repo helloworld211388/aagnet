@@ -91,19 +91,21 @@ class Custom27Dataset(BaseDataset):
         print("Done loading {} files".format(len(self.data)))
 
     def _collate(self, batch):
-        """
-        Collate a batch of data samples together into a single batch.
-
-        Args:
-            batch (List[dict]): List of data samples.
-
-        Returns:
-            dict: Batched data.
-        """
         batched_graph = dgl.batch([sample["graph"] for sample in batch])
+        inst_labels = self.pack_pad_2D_adj(batch)
         batched_filenames = [sample["filename"] for sample in batch]
         return {"graph": batched_graph,
+                "inst_labels": inst_labels,
                 "filename": batched_filenames}
+
+    def pack_pad_2D_adj(self, batch):
+        max_num_nodes = max([sample["inst_y"].shape[0] for sample in batch])
+        batched_adj = torch.zeros(len(batch), max_num_nodes, max_num_nodes, dtype=torch.float)
+        for i, sample in enumerate(batch):
+            adj = sample["inst_y"]
+            n = adj.shape[0]
+            batched_adj[i, :n, :n] = adj
+        return batched_adj
     
     def load_one_graph(self, fn, data):
         """
@@ -135,7 +137,7 @@ class Custom27Dataset(BaseDataset):
             return None
         
         cls_labels = labels_data["cls"]
-        
+
         # Convert cls labels to array
         face_labels = np.zeros(num_faces, dtype=np.int32)
         for face_id_str, class_id in cls_labels.items():
@@ -144,12 +146,33 @@ class Custom27Dataset(BaseDataset):
                 face_labels[face_id] = class_id
             else:
                 print(f"Warning: Face ID {face_id} out of range for {fn} (num_faces={num_faces})")
-        
-        # Verify number of labeled faces matches
+
         if len(cls_labels) != num_faces:
             print(f"Warning: Number of labels ({len(cls_labels)}) != number of faces ({num_faces}) for {fn}")
-        
-        sample["graph"].ndata["y"] = torch.tensor(face_labels).long()
+
+        sample["graph"].ndata["seg_y"] = torch.tensor(face_labels).long()
+        # keep "y" as alias for backward compat
+        sample["graph"].ndata["y"] = sample["graph"].ndata["seg_y"]
+
+        # Instance segmentation: seg is list of lists of face ids in same instance
+        inst_adj = np.zeros((num_faces, num_faces), dtype=np.float32)
+        seg_groups = labels_data.get("seg", [])
+        for group in seg_groups:
+            for i in group:
+                for j in group:
+                    if i < num_faces and j < num_faces:
+                        inst_adj[i, j] = 1.0
+        sample["inst_y"] = torch.tensor(inst_adj).float()
+
+        # Bottom face segmentation
+        bottom_labels = labels_data.get("bottom", {})
+        bottom_arr = np.zeros(num_faces, dtype=np.float32)
+        for face_id_str, val in bottom_labels.items():
+            face_id = int(face_id_str)
+            if face_id < num_faces:
+                bottom_arr[face_id] = float(val)
+        sample["graph"].ndata["bottom_y"] = torch.tensor(bottom_arr).float().reshape(-1, 1)
+
         return sample
 
 

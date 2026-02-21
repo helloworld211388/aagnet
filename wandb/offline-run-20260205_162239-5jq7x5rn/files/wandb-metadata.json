@@ -1,0 +1,204 @@
+{
+    "os": "Linux-6.17.0-8-generic-x86_64-with-glibc2.31",
+    "python": "3.10.8",
+    "heartbeatAt": "2026-02-05T08:22:39.332448",
+    "startedAt": "2026-02-05T08:22:39.240443",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "-m engine.custom27_trainer",
+    "git": {
+        "remote": "https://github.com/helloworld211388/aagnet.git",
+        "commit": null
+    },
+    "email": null,
+    "root": "/home/project/AAGNet-main",
+    "host": "bbb9c3847893",
+    "username": "root",
+    "executable": "/root/miniconda3/envs/aagnet/bin/python",
+    "cpu_count": 24,
+    "cpu_count_logical": 32,
+    "cpu_freq": {
+        "current": 2347.6140937500004,
+        "min": 800.0,
+        "max": 4937.5
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3334.909,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3318.461,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3353.941,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3324.397,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3298.22,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3102.163,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3309.558,
+            "min": 800.0,
+            "max": 5800.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5800.0
+        },
+        {
+            "current": 3637.003,
+            "min": 800.0,
+            "max": 5800.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5800.0
+        },
+        {
+            "current": 3404.933,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3364.084,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3274.468,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 5500.0
+        },
+        {
+            "current": 3446.917,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3487.828,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3498.943,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 1474.381,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3400.787,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 800.0,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3460.06,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3429.887,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3445.108,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3470.555,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3290.0,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3418.359,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 2710.099,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3412.5,
+            "min": 800.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3423.055,
+            "min": 800.0,
+            "max": 4300.0
+        }
+    ],
+    "disk": {
+        "total": 982.7706756591797,
+        "used": 402.0400619506836
+    },
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4090",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 30.353477478027344
+    }
+}

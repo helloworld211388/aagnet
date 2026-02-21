@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(conda env:*)",
+      "Bash(python3:*)",
+      "Bash(conda run:*)",
+      "Bash(ls:*)",
+      "Bash(nvidia-smi:*)",
+      "Bash(~/.bashrc:*)",
+      "Bash(source:*)",
+      "Bash(echo:*)",
+      "Bash(python -m engine.custom27_test:*)",
+      "Bash(python -c:*)"
+    ]
+  }
+}

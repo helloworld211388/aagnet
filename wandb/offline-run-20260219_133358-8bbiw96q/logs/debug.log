@@ -1,0 +1,28 @@
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Current SDK version is 0.15.5
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Configure stats pid to 2033
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Loading settings from /root/.config/wandb/settings
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Loading settings from /root/autodl-tmp/project/AAGNet-main/wandb/settings
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***', 'mode': 'offline'}
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2026-02-19 13:33:58,523 WARNING MainThread:2033 [wandb_setup.py:_flush():76] Could not find program at -m engine.custom27_test
+2026-02-19 13:33:58,523 INFO    MainThread:2033 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '-m engine.custom27_test'}
+2026-02-19 13:33:58,524 INFO    MainThread:2033 [wandb_init.py:_log_setup():507] Logging user logs to /root/autodl-tmp/project/AAGNet-main/wandb/offline-run-20260219_133358-8bbiw96q/logs/debug.log
+2026-02-19 13:33:58,524 INFO    MainThread:2033 [wandb_init.py:_log_setup():508] Logging internal logs to /root/autodl-tmp/project/AAGNet-main/wandb/offline-run-20260219_133358-8bbiw96q/logs/debug-internal.log
+2026-02-19 13:33:58,524 INFO    MainThread:2033 [wandb_init.py:init():547] calling init triggers
+2026-02-19 13:33:58,524 INFO    MainThread:2033 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'edge_attr_dim': 12, 'node_attr_dim': 10, 'edge_attr_emb': 64, 'node_attr_emb': 64, 'edge_grid_dim': 0, 'node_grid_dim': 7, 'edge_grid_emb': 0, 'node_grid_emb': 64, 'num_layers': 3, 'delta': 2, 'mlp_ratio': 2, 'drop': 0.25, 'drop_path': 0.25, 'head_hidden_dim': 64, 'conv_on_edge': False, 'use_uv_gird': True, 'use_edge_attr': True, 'use_face_attr': True, 'seed': 42, 'device': 'cuda', 'architecture': 'AAGNetGraphEncoder', 'dataset': '../your_dataset_path', 'batch_size': 256, 'weight_path': 'output/your_weight.pth'}
+2026-02-19 13:33:58,524 INFO    MainThread:2033 [wandb_init.py:init():596] starting backend
+2026-02-19 13:33:58,525 INFO    MainThread:2033 [wandb_init.py:init():600] setting up manager
+2026-02-19 13:33:58,528 INFO    MainThread:2033 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2026-02-19 13:33:58,531 INFO    MainThread:2033 [wandb_init.py:init():606] backend started and connected
+2026-02-19 13:33:58,537 INFO    MainThread:2033 [wandb_init.py:init():705] updated telemetry
+2026-02-19 13:33:58,548 INFO    MainThread:2033 [wandb_init.py:init():738] communicating run to backend with 60.0 second timeout
+2026-02-19 13:33:58,554 INFO    MainThread:2033 [wandb_init.py:init():789] starting run threads in backend
+2026-02-19 13:33:58,802 INFO    MainThread:2033 [wandb_run.py:_console_start():2152] atexit reg
+2026-02-19 13:33:58,803 INFO    MainThread:2033 [wandb_run.py:_redirect():2007] redirect: SettingsConsole.WRAP_RAW
+2026-02-19 13:33:58,803 INFO    MainThread:2033 [wandb_run.py:_redirect():2072] Wrapping output streams.
+2026-02-19 13:33:58,803 INFO    MainThread:2033 [wandb_run.py:_redirect():2097] Redirects installed.
+2026-02-19 13:33:58,805 INFO    MainThread:2033 [wandb_init.py:init():830] run started, returning control to user process
+2026-02-19 13:33:58,995 INFO    MainThread:2033 [wandb_config.py:__setitem__():151] config set total_params = 377822 - <bound method Run._config_callback of <wandb.sdk.wandb_run.Run object at 0x7fe8df77d2a0>>
+2026-02-19 13:33:58,995 INFO    MainThread:2033 [wandb_run.py:_config_callback():1281] config_cb total_params 377822 None
+2026-02-19 13:34:00,046 WARNING MsgRouterThr:2033 [router.py:message_loop():77] message_loop has been closed

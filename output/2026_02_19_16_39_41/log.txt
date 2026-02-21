@@ -1,0 +1,346 @@
+[2026-02-19 16:43:06] [INFO] : ------------- Now start epoch 0-------------  
+[2026-02-19 16:43:21] [INFO] : train_loss:1.9797 seg_acc:0.2939 seg_iou:0.1983 inst_acc:0.9611 inst_f1:0.1199 bottom_acc:0.9086 bottom_iou:0.4393 
+[2026-02-19 16:43:23] [INFO] : val_loss:1.0669 seg_acc:0.5101 seg_iou:0.3938 inst_acc:0.9731 inst_f1:0.0023 bottom_acc:0.9516 bottom_iou:0.7004 
+[2026-02-19 16:43:23] [INFO] : best metric: 0.39384984970092773, model saved 
+[2026-02-19 16:43:23] [INFO] : ------------- Now start epoch 1-------------  
+[2026-02-19 16:43:37] [INFO] : train_loss:0.8211 seg_acc:0.6295 seg_iou:0.5158 inst_acc:0.9750 inst_f1:0.0599 bottom_acc:0.9511 bottom_iou:0.7021 
+[2026-02-19 16:43:39] [INFO] : val_loss:0.6126 seg_acc:0.7314 seg_iou:0.6407 inst_acc:0.9746 inst_f1:0.1255 bottom_acc:0.9629 bottom_iou:0.7636 
+[2026-02-19 16:43:39] [INFO] : best metric: 0.6406785845756531, model saved 
+[2026-02-19 16:43:39] [INFO] : ------------- Now start epoch 2-------------  
+[2026-02-19 16:43:53] [INFO] : train_loss:0.5366 seg_acc:0.7593 seg_iou:0.6700 inst_acc:0.9762 inst_f1:0.1637 bottom_acc:0.9614 bottom_iou:0.7619 
+[2026-02-19 16:43:55] [INFO] : val_loss:0.4525 seg_acc:0.8078 seg_iou:0.7374 inst_acc:0.9758 inst_f1:0.2064 bottom_acc:0.9687 bottom_iou:0.8011 
+[2026-02-19 16:43:55] [INFO] : best metric: 0.7373884320259094, model saved 
+[2026-02-19 16:43:55] [INFO] : ------------- Now start epoch 3-------------  
+[2026-02-19 16:44:09] [INFO] : train_loss:0.4408 seg_acc:0.7967 seg_iou:0.7185 inst_acc:0.9796 inst_f1:0.4526 bottom_acc:0.9657 bottom_iou:0.7862 
+[2026-02-19 16:44:11] [INFO] : val_loss:0.3800 seg_acc:0.8324 seg_iou:0.7700 inst_acc:0.9821 inst_f1:0.6227 bottom_acc:0.9704 bottom_iou:0.8117 
+[2026-02-19 16:44:11] [INFO] : best metric: 0.7700237035751343, model saved 
+[2026-02-19 16:44:11] [INFO] : ------------- Now start epoch 4-------------  
+[2026-02-19 16:44:25] [INFO] : train_loss:0.3772 seg_acc:0.8163 seg_iou:0.7452 inst_acc:0.9860 inst_f1:0.7113 bottom_acc:0.9684 bottom_iou:0.8014 
+[2026-02-19 16:44:27] [INFO] : val_loss:0.3324 seg_acc:0.8415 seg_iou:0.7866 inst_acc:0.9883 inst_f1:0.7851 bottom_acc:0.9716 bottom_iou:0.8187 
+[2026-02-19 16:44:27] [INFO] : best metric: 0.7866395711898804, model saved 
+[2026-02-19 16:44:27] [INFO] : ------------- Now start epoch 5-------------  
+[2026-02-19 16:44:41] [INFO] : train_loss:0.3345 seg_acc:0.8293 seg_iou:0.7641 inst_acc:0.9894 inst_f1:0.7858 bottom_acc:0.9701 bottom_iou:0.8110 
+[2026-02-19 16:44:43] [INFO] : val_loss:0.2988 seg_acc:0.8535 seg_iou:0.8024 inst_acc:0.9900 inst_f1:0.8274 bottom_acc:0.9721 bottom_iou:0.8222 
+[2026-02-19 16:44:43] [INFO] : best metric: 0.8023645877838135, model saved 
+[2026-02-19 16:44:43] [INFO] : ------------- Now start epoch 6-------------  
+[2026-02-19 16:44:56] [INFO] : train_loss:0.3070 seg_acc:0.8385 seg_iou:0.7775 inst_acc:0.9905 inst_f1:0.8154 bottom_acc:0.9707 bottom_iou:0.8143 
+[2026-02-19 16:44:58] [INFO] : val_loss:0.2786 seg_acc:0.8602 seg_iou:0.8122 inst_acc:0.9906 inst_f1:0.8399 bottom_acc:0.9722 bottom_iou:0.8228 
+[2026-02-19 16:44:58] [INFO] : best metric: 0.8121677041053772, model saved 
+[2026-02-19 16:44:58] [INFO] : ------------- Now start epoch 7-------------  
+[2026-02-19 16:45:10] [INFO] : train_loss:0.2811 seg_acc:0.8480 seg_iou:0.7915 inst_acc:0.9914 inst_f1:0.8365 bottom_acc:0.9717 bottom_iou:0.8201 
+[2026-02-19 16:45:12] [INFO] : val_loss:0.2632 seg_acc:0.8676 seg_iou:0.8221 inst_acc:0.9918 inst_f1:0.8555 bottom_acc:0.9736 bottom_iou:0.8292 
+[2026-02-19 16:45:12] [INFO] : best metric: 0.822110116481781, model saved 
+[2026-02-19 16:45:12] [INFO] : ------------- Now start epoch 8-------------  
+[2026-02-19 16:45:25] [INFO] : train_loss:0.2636 seg_acc:0.8544 seg_iou:0.8015 inst_acc:0.9921 inst_f1:0.8459 bottom_acc:0.9723 bottom_iou:0.8233 
+[2026-02-19 16:45:27] [INFO] : val_loss:0.2438 seg_acc:0.8739 seg_iou:0.8296 inst_acc:0.9926 inst_f1:0.8672 bottom_acc:0.9742 bottom_iou:0.8328 
+[2026-02-19 16:45:27] [INFO] : best metric: 0.8295514583587646, model saved 
+[2026-02-19 16:45:27] [INFO] : ------------- Now start epoch 9-------------  
+[2026-02-19 16:45:39] [INFO] : train_loss:0.2522 seg_acc:0.8581 seg_iou:0.8070 inst_acc:0.9927 inst_f1:0.8573 bottom_acc:0.9729 bottom_iou:0.8273 
+[2026-02-19 16:45:41] [INFO] : val_loss:0.2306 seg_acc:0.8784 seg_iou:0.8377 inst_acc:0.9930 inst_f1:0.8763 bottom_acc:0.9752 bottom_iou:0.8406 
+[2026-02-19 16:45:41] [INFO] : best metric: 0.8376714587211609, model saved 
+[2026-02-19 16:45:41] [INFO] : ------------- Now start epoch 10-------------  
+[2026-02-19 16:45:54] [INFO] : train_loss:0.2433 seg_acc:0.8617 seg_iou:0.8129 inst_acc:0.9928 inst_f1:0.8626 bottom_acc:0.9733 bottom_iou:0.8298 
+[2026-02-19 16:45:56] [INFO] : val_loss:0.2317 seg_acc:0.8775 seg_iou:0.8374 inst_acc:0.9932 inst_f1:0.8798 bottom_acc:0.9744 bottom_iou:0.8348 
+[2026-02-19 16:45:56] [INFO] : ------------- Now start epoch 11-------------  
+[2026-02-19 16:46:09] [INFO] : train_loss:0.2313 seg_acc:0.8649 seg_iou:0.8175 inst_acc:0.9934 inst_f1:0.8738 bottom_acc:0.9744 bottom_iou:0.8369 
+[2026-02-19 16:46:11] [INFO] : val_loss:0.2202 seg_acc:0.8788 seg_iou:0.8419 inst_acc:0.9934 inst_f1:0.8842 bottom_acc:0.9750 bottom_iou:0.8369 
+[2026-02-19 16:46:11] [INFO] : best metric: 0.8418915271759033, model saved 
+[2026-02-19 16:46:11] [INFO] : ------------- Now start epoch 12-------------  
+[2026-02-19 16:46:24] [INFO] : train_loss:0.2270 seg_acc:0.8659 seg_iou:0.8197 inst_acc:0.9936 inst_f1:0.8774 bottom_acc:0.9752 bottom_iou:0.8418 
+[2026-02-19 16:46:25] [INFO] : val_loss:0.2164 seg_acc:0.8784 seg_iou:0.8426 inst_acc:0.9933 inst_f1:0.8828 bottom_acc:0.9761 bottom_iou:0.8471 
+[2026-02-19 16:46:25] [INFO] : best metric: 0.8426170349121094, model saved 
+[2026-02-19 16:46:25] [INFO] : ------------- Now start epoch 13-------------  
+[2026-02-19 16:46:37] [INFO] : train_loss:0.2174 seg_acc:0.8682 seg_iou:0.8230 inst_acc:0.9940 inst_f1:0.8834 bottom_acc:0.9762 bottom_iou:0.8480 
+[2026-02-19 16:46:39] [INFO] : val_loss:0.2157 seg_acc:0.8786 seg_iou:0.8417 inst_acc:0.9939 inst_f1:0.8921 bottom_acc:0.9775 bottom_iou:0.8548 
+[2026-02-19 16:46:39] [INFO] : ------------- Now start epoch 14-------------  
+[2026-02-19 16:46:52] [INFO] : train_loss:0.2135 seg_acc:0.8691 seg_iou:0.8245 inst_acc:0.9941 inst_f1:0.8878 bottom_acc:0.9771 bottom_iou:0.8537 
+[2026-02-19 16:46:54] [INFO] : val_loss:0.2103 seg_acc:0.8812 seg_iou:0.8436 inst_acc:0.9940 inst_f1:0.8935 bottom_acc:0.9787 bottom_iou:0.8616 
+[2026-02-19 16:46:54] [INFO] : best metric: 0.8436354994773865, model saved 
+[2026-02-19 16:46:54] [INFO] : ------------- Now start epoch 15-------------  
+[2026-02-19 16:47:06] [INFO] : train_loss:0.2114 seg_acc:0.8696 seg_iou:0.8252 inst_acc:0.9942 inst_f1:0.8898 bottom_acc:0.9774 bottom_iou:0.8553 
+[2026-02-19 16:47:08] [INFO] : val_loss:0.1999 seg_acc:0.8830 seg_iou:0.8488 inst_acc:0.9943 inst_f1:0.8979 bottom_acc:0.9794 bottom_iou:0.8666 
+[2026-02-19 16:47:08] [INFO] : best metric: 0.8488271236419678, model saved 
+[2026-02-19 16:47:08] [INFO] : ------------- Now start epoch 16-------------  
+[2026-02-19 16:47:21] [INFO] : train_loss:0.1993 seg_acc:0.8732 seg_iou:0.8311 inst_acc:0.9945 inst_f1:0.8927 bottom_acc:0.9784 bottom_iou:0.8619 
+[2026-02-19 16:47:23] [INFO] : val_loss:0.1996 seg_acc:0.8855 seg_iou:0.8534 inst_acc:0.9941 inst_f1:0.8965 bottom_acc:0.9803 bottom_iou:0.8720 
+[2026-02-19 16:47:23] [INFO] : best metric: 0.8533858060836792, model saved 
+[2026-02-19 16:47:23] [INFO] : ------------- Now start epoch 17-------------  
+[2026-02-19 16:47:36] [INFO] : train_loss:0.1960 seg_acc:0.8741 seg_iou:0.8326 inst_acc:0.9945 inst_f1:0.8945 bottom_acc:0.9791 bottom_iou:0.8661 
+[2026-02-19 16:47:38] [INFO] : val_loss:0.1886 seg_acc:0.8863 seg_iou:0.8550 inst_acc:0.9942 inst_f1:0.8975 bottom_acc:0.9806 bottom_iou:0.8743 
+[2026-02-19 16:47:38] [INFO] : best metric: 0.855005145072937, model saved 
+[2026-02-19 16:47:38] [INFO] : ------------- Now start epoch 18-------------  
+[2026-02-19 16:47:51] [INFO] : train_loss:0.1941 seg_acc:0.8741 seg_iou:0.8325 inst_acc:0.9947 inst_f1:0.8971 bottom_acc:0.9791 bottom_iou:0.8664 
+[2026-02-19 16:47:53] [INFO] : val_loss:0.1905 seg_acc:0.8860 seg_iou:0.8537 inst_acc:0.9942 inst_f1:0.8972 bottom_acc:0.9815 bottom_iou:0.8804 
+[2026-02-19 16:47:53] [INFO] : ------------- Now start epoch 19-------------  
+[2026-02-19 16:48:06] [INFO] : train_loss:0.1878 seg_acc:0.8762 seg_iou:0.8355 inst_acc:0.9948 inst_f1:0.8995 bottom_acc:0.9802 bottom_iou:0.8736 
+[2026-02-19 16:48:07] [INFO] : val_loss:0.1756 seg_acc:0.8860 seg_iou:0.8564 inst_acc:0.9947 inst_f1:0.9051 bottom_acc:0.9816 bottom_iou:0.8805 
+[2026-02-19 16:48:07] [INFO] : best metric: 0.8563697338104248, model saved 
+[2026-02-19 16:48:07] [INFO] : ------------- Now start epoch 20-------------  
+[2026-02-19 16:48:21] [INFO] : train_loss:0.1850 seg_acc:0.8773 seg_iou:0.8376 inst_acc:0.9948 inst_f1:0.9022 bottom_acc:0.9805 bottom_iou:0.8757 
+[2026-02-19 16:48:22] [INFO] : val_loss:0.1914 seg_acc:0.8863 seg_iou:0.8521 inst_acc:0.9945 inst_f1:0.9025 bottom_acc:0.9821 bottom_iou:0.8842 
+[2026-02-19 16:48:22] [INFO] : ------------- Now start epoch 21-------------  
+[2026-02-19 16:48:35] [INFO] : train_loss:0.1806 seg_acc:0.8779 seg_iou:0.8385 inst_acc:0.9951 inst_f1:0.9043 bottom_acc:0.9810 bottom_iou:0.8786 
+[2026-02-19 16:48:37] [INFO] : val_loss:0.1932 seg_acc:0.8885 seg_iou:0.8562 inst_acc:0.9949 inst_f1:0.9081 bottom_acc:0.9827 bottom_iou:0.8873 
+[2026-02-19 16:48:37] [INFO] : ------------- Now start epoch 22-------------  
+[2026-02-19 16:48:50] [INFO] : train_loss:0.1784 seg_acc:0.8777 seg_iou:0.8382 inst_acc:0.9950 inst_f1:0.9057 bottom_acc:0.9811 bottom_iou:0.8799 
+[2026-02-19 16:48:52] [INFO] : val_loss:0.1789 seg_acc:0.8883 seg_iou:0.8576 inst_acc:0.9950 inst_f1:0.9093 bottom_acc:0.9832 bottom_iou:0.8916 
+[2026-02-19 16:48:52] [INFO] : best metric: 0.8575674295425415, model saved 
+[2026-02-19 16:48:52] [INFO] : ------------- Now start epoch 23-------------  
+[2026-02-19 16:49:05] [INFO] : train_loss:0.1764 seg_acc:0.8789 seg_iou:0.8401 inst_acc:0.9950 inst_f1:0.9040 bottom_acc:0.9820 bottom_iou:0.8851 
+[2026-02-19 16:49:06] [INFO] : val_loss:0.1760 seg_acc:0.8900 seg_iou:0.8579 inst_acc:0.9951 inst_f1:0.9114 bottom_acc:0.9836 bottom_iou:0.8947 
+[2026-02-19 16:49:06] [INFO] : best metric: 0.857921838760376, model saved 
+[2026-02-19 16:49:06] [INFO] : ------------- Now start epoch 24-------------  
+[2026-02-19 16:49:19] [INFO] : train_loss:0.1716 seg_acc:0.8805 seg_iou:0.8428 inst_acc:0.9953 inst_f1:0.9100 bottom_acc:0.9821 bottom_iou:0.8860 
+[2026-02-19 16:49:21] [INFO] : val_loss:0.1764 seg_acc:0.8886 seg_iou:0.8600 inst_acc:0.9948 inst_f1:0.9076 bottom_acc:0.9836 bottom_iou:0.8938 
+[2026-02-19 16:49:21] [INFO] : best metric: 0.8599681854248047, model saved 
+[2026-02-19 16:49:21] [INFO] : ------------- Now start epoch 25-------------  
+[2026-02-19 16:49:34] [INFO] : train_loss:0.1673 seg_acc:0.8813 seg_iou:0.8442 inst_acc:0.9954 inst_f1:0.9116 bottom_acc:0.9826 bottom_iou:0.8889 
+[2026-02-19 16:49:35] [INFO] : val_loss:0.1915 seg_acc:0.8872 seg_iou:0.8572 inst_acc:0.9951 inst_f1:0.9122 bottom_acc:0.9841 bottom_iou:0.8982 
+[2026-02-19 16:49:35] [INFO] : ------------- Now start epoch 26-------------  
+[2026-02-19 16:49:48] [INFO] : train_loss:0.1657 seg_acc:0.8815 seg_iou:0.8442 inst_acc:0.9955 inst_f1:0.9124 bottom_acc:0.9833 bottom_iou:0.8935 
+[2026-02-19 16:49:50] [INFO] : val_loss:0.1748 seg_acc:0.8910 seg_iou:0.8602 inst_acc:0.9953 inst_f1:0.9149 bottom_acc:0.9848 bottom_iou:0.9017 
+[2026-02-19 16:49:50] [INFO] : best metric: 0.860170841217041, model saved 
+[2026-02-19 16:49:50] [INFO] : ------------- Now start epoch 27-------------  
+[2026-02-19 16:50:03] [INFO] : train_loss:0.1608 seg_acc:0.8821 seg_iou:0.8456 inst_acc:0.9956 inst_f1:0.9145 bottom_acc:0.9841 bottom_iou:0.8982 
+[2026-02-19 16:50:05] [INFO] : val_loss:0.1673 seg_acc:0.8901 seg_iou:0.8626 inst_acc:0.9952 inst_f1:0.9146 bottom_acc:0.9855 bottom_iou:0.9063 
+[2026-02-19 16:50:05] [INFO] : best metric: 0.8625791072845459, model saved 
+[2026-02-19 16:50:05] [INFO] : ------------- Now start epoch 28-------------  
+[2026-02-19 16:50:17] [INFO] : train_loss:0.1620 seg_acc:0.8822 seg_iou:0.8456 inst_acc:0.9957 inst_f1:0.9141 bottom_acc:0.9843 bottom_iou:0.8996 
+[2026-02-19 16:50:19] [INFO] : val_loss:0.1646 seg_acc:0.8876 seg_iou:0.8598 inst_acc:0.9956 inst_f1:0.9196 bottom_acc:0.9858 bottom_iou:0.9077 
+[2026-02-19 16:50:19] [INFO] : ------------- Now start epoch 29-------------  
+[2026-02-19 16:50:32] [INFO] : train_loss:0.1560 seg_acc:0.8837 seg_iou:0.8481 inst_acc:0.9956 inst_f1:0.9159 bottom_acc:0.9853 bottom_iou:0.9057 
+[2026-02-19 16:50:34] [INFO] : val_loss:0.1711 seg_acc:0.8897 seg_iou:0.8624 inst_acc:0.9953 inst_f1:0.9157 bottom_acc:0.9867 bottom_iou:0.9136 
+[2026-02-19 16:50:34] [INFO] : ------------- Now start epoch 30-------------  
+[2026-02-19 16:50:47] [INFO] : train_loss:0.1545 seg_acc:0.8837 seg_iou:0.8479 inst_acc:0.9957 inst_f1:0.9180 bottom_acc:0.9858 bottom_iou:0.9085 
+[2026-02-19 16:50:49] [INFO] : val_loss:0.1613 seg_acc:0.8932 seg_iou:0.8654 inst_acc:0.9955 inst_f1:0.9191 bottom_acc:0.9873 bottom_iou:0.9175 
+[2026-02-19 16:50:49] [INFO] : best metric: 0.8653954267501831, model saved 
+[2026-02-19 16:50:49] [INFO] : ------------- Now start epoch 31-------------  
+[2026-02-19 16:51:02] [INFO] : train_loss:0.1513 seg_acc:0.8847 seg_iou:0.8496 inst_acc:0.9958 inst_f1:0.9172 bottom_acc:0.9864 bottom_iou:0.9125 
+[2026-02-19 16:51:03] [INFO] : val_loss:0.1611 seg_acc:0.8923 seg_iou:0.8643 inst_acc:0.9958 inst_f1:0.9234 bottom_acc:0.9880 bottom_iou:0.9219 
+[2026-02-19 16:51:03] [INFO] : ------------- Now start epoch 32-------------  
+[2026-02-19 16:51:16] [INFO] : train_loss:0.1456 seg_acc:0.8864 seg_iou:0.8525 inst_acc:0.9959 inst_f1:0.9206 bottom_acc:0.9872 bottom_iou:0.9173 
+[2026-02-19 16:51:18] [INFO] : val_loss:0.1615 seg_acc:0.8939 seg_iou:0.8668 inst_acc:0.9956 inst_f1:0.9209 bottom_acc:0.9888 bottom_iou:0.9269 
+[2026-02-19 16:51:18] [INFO] : best metric: 0.8667714595794678, model saved 
+[2026-02-19 16:51:18] [INFO] : ------------- Now start epoch 33-------------  
+[2026-02-19 16:51:31] [INFO] : train_loss:0.1461 seg_acc:0.8855 seg_iou:0.8509 inst_acc:0.9959 inst_f1:0.9201 bottom_acc:0.9872 bottom_iou:0.9175 
+[2026-02-19 16:51:33] [INFO] : val_loss:0.1642 seg_acc:0.8905 seg_iou:0.8633 inst_acc:0.9957 inst_f1:0.9216 bottom_acc:0.9892 bottom_iou:0.9294 
+[2026-02-19 16:51:33] [INFO] : ------------- Now start epoch 34-------------  
+[2026-02-19 16:51:46] [INFO] : train_loss:0.1446 seg_acc:0.8859 seg_iou:0.8512 inst_acc:0.9959 inst_f1:0.9214 bottom_acc:0.9870 bottom_iou:0.9163 
+[2026-02-19 16:51:47] [INFO] : val_loss:0.1607 seg_acc:0.8923 seg_iou:0.8651 inst_acc:0.9960 inst_f1:0.9268 bottom_acc:0.9890 bottom_iou:0.9286 
+[2026-02-19 16:51:47] [INFO] : ------------- Now start epoch 35-------------  
+[2026-02-19 16:52:00] [INFO] : train_loss:0.1444 seg_acc:0.8853 seg_iou:0.8503 inst_acc:0.9960 inst_f1:0.9220 bottom_acc:0.9877 bottom_iou:0.9205 
+[2026-02-19 16:52:02] [INFO] : val_loss:0.1649 seg_acc:0.8937 seg_iou:0.8663 inst_acc:0.9959 inst_f1:0.9259 bottom_acc:0.9892 bottom_iou:0.9295 
+[2026-02-19 16:52:02] [INFO] : ------------- Now start epoch 36-------------  
+[2026-02-19 16:52:15] [INFO] : train_loss:0.1393 seg_acc:0.8872 seg_iou:0.8534 inst_acc:0.9961 inst_f1:0.9240 bottom_acc:0.9880 bottom_iou:0.9225 
+[2026-02-19 16:52:16] [INFO] : val_loss:0.1621 seg_acc:0.8904 seg_iou:0.8640 inst_acc:0.9959 inst_f1:0.9259 bottom_acc:0.9899 bottom_iou:0.9339 
+[2026-02-19 16:52:16] [INFO] : ------------- Now start epoch 37-------------  
+[2026-02-19 16:52:29] [INFO] : train_loss:0.1359 seg_acc:0.8876 seg_iou:0.8540 inst_acc:0.9962 inst_f1:0.9264 bottom_acc:0.9883 bottom_iou:0.9244 
+[2026-02-19 16:52:31] [INFO] : val_loss:0.1509 seg_acc:0.8929 seg_iou:0.8667 inst_acc:0.9960 inst_f1:0.9267 bottom_acc:0.9900 bottom_iou:0.9345 
+[2026-02-19 16:52:31] [INFO] : ------------- Now start epoch 38-------------  
+[2026-02-19 16:52:44] [INFO] : train_loss:0.1337 seg_acc:0.8880 seg_iou:0.8548 inst_acc:0.9962 inst_f1:0.9263 bottom_acc:0.9885 bottom_iou:0.9253 
+[2026-02-19 16:52:45] [INFO] : val_loss:0.1595 seg_acc:0.8923 seg_iou:0.8657 inst_acc:0.9956 inst_f1:0.9209 bottom_acc:0.9902 bottom_iou:0.9360 
+[2026-02-19 16:52:45] [INFO] : ------------- Now start epoch 39-------------  
+[2026-02-19 16:52:58] [INFO] : train_loss:0.1352 seg_acc:0.8875 seg_iou:0.8537 inst_acc:0.9960 inst_f1:0.9236 bottom_acc:0.9887 bottom_iou:0.9265 
+[2026-02-19 16:53:00] [INFO] : val_loss:0.1508 seg_acc:0.8959 seg_iou:0.8686 inst_acc:0.9961 inst_f1:0.9294 bottom_acc:0.9905 bottom_iou:0.9376 
+[2026-02-19 16:53:00] [INFO] : best metric: 0.8686351776123047, model saved 
+[2026-02-19 16:53:00] [INFO] : ------------- Now start epoch 40-------------  
+[2026-02-19 16:53:13] [INFO] : train_loss:0.1311 seg_acc:0.8890 seg_iou:0.8562 inst_acc:0.9962 inst_f1:0.9265 bottom_acc:0.9890 bottom_iou:0.9287 
+[2026-02-19 16:53:14] [INFO] : val_loss:0.1641 seg_acc:0.8929 seg_iou:0.8682 inst_acc:0.9959 inst_f1:0.9255 bottom_acc:0.9905 bottom_iou:0.9377 
+[2026-02-19 16:53:14] [INFO] : ------------- Now start epoch 41-------------  
+[2026-02-19 16:53:27] [INFO] : train_loss:0.1269 seg_acc:0.8902 seg_iou:0.8582 inst_acc:0.9964 inst_f1:0.9291 bottom_acc:0.9891 bottom_iou:0.9296 
+[2026-02-19 16:53:29] [INFO] : val_loss:0.1598 seg_acc:0.8934 seg_iou:0.8687 inst_acc:0.9963 inst_f1:0.9325 bottom_acc:0.9908 bottom_iou:0.9396 
+[2026-02-19 16:53:29] [INFO] : best metric: 0.8687246441841125, model saved 
+[2026-02-19 16:53:29] [INFO] : ------------- Now start epoch 42-------------  
+[2026-02-19 16:53:42] [INFO] : train_loss:0.1246 seg_acc:0.8902 seg_iou:0.8584 inst_acc:0.9963 inst_f1:0.9287 bottom_acc:0.9894 bottom_iou:0.9311 
+[2026-02-19 16:53:44] [INFO] : val_loss:0.1544 seg_acc:0.8956 seg_iou:0.8690 inst_acc:0.9962 inst_f1:0.9311 bottom_acc:0.9905 bottom_iou:0.9378 
+[2026-02-19 16:53:44] [INFO] : best metric: 0.8689746260643005, model saved 
+[2026-02-19 16:53:44] [INFO] : ------------- Now start epoch 43-------------  
+[2026-02-19 16:53:57] [INFO] : train_loss:0.1230 seg_acc:0.8904 seg_iou:0.8586 inst_acc:0.9964 inst_f1:0.9307 bottom_acc:0.9898 bottom_iou:0.9334 
+[2026-02-19 16:53:58] [INFO] : val_loss:0.1604 seg_acc:0.8926 seg_iou:0.8685 inst_acc:0.9960 inst_f1:0.9277 bottom_acc:0.9911 bottom_iou:0.9413 
+[2026-02-19 16:53:58] [INFO] : ------------- Now start epoch 44-------------  
+[2026-02-19 16:54:11] [INFO] : train_loss:0.1232 seg_acc:0.8905 seg_iou:0.8585 inst_acc:0.9963 inst_f1:0.9286 bottom_acc:0.9896 bottom_iou:0.9322 
+[2026-02-19 16:54:13] [INFO] : val_loss:0.1581 seg_acc:0.8939 seg_iou:0.8690 inst_acc:0.9963 inst_f1:0.9329 bottom_acc:0.9909 bottom_iou:0.9402 
+[2026-02-19 16:54:13] [INFO] : ------------- Now start epoch 45-------------  
+[2026-02-19 16:54:26] [INFO] : train_loss:0.1200 seg_acc:0.8922 seg_iou:0.8610 inst_acc:0.9965 inst_f1:0.9332 bottom_acc:0.9899 bottom_iou:0.9340 
+[2026-02-19 16:54:28] [INFO] : val_loss:0.1580 seg_acc:0.8955 seg_iou:0.8689 inst_acc:0.9965 inst_f1:0.9359 bottom_acc:0.9907 bottom_iou:0.9387 
+[2026-02-19 16:54:28] [INFO] : ------------- Now start epoch 46-------------  
+[2026-02-19 16:54:41] [INFO] : train_loss:0.1127 seg_acc:0.8937 seg_iou:0.8638 inst_acc:0.9966 inst_f1:0.9347 bottom_acc:0.9903 bottom_iou:0.9369 
+[2026-02-19 16:54:42] [INFO] : val_loss:0.1616 seg_acc:0.8922 seg_iou:0.8671 inst_acc:0.9962 inst_f1:0.9310 bottom_acc:0.9914 bottom_iou:0.9433 
+[2026-02-19 16:54:42] [INFO] : ------------- Now start epoch 47-------------  
+[2026-02-19 16:54:55] [INFO] : train_loss:0.1160 seg_acc:0.8927 seg_iou:0.8618 inst_acc:0.9966 inst_f1:0.9344 bottom_acc:0.9902 bottom_iou:0.9364 
+[2026-02-19 16:54:57] [INFO] : val_loss:0.1630 seg_acc:0.8963 seg_iou:0.8706 inst_acc:0.9966 inst_f1:0.9374 bottom_acc:0.9915 bottom_iou:0.9438 
+[2026-02-19 16:54:57] [INFO] : best metric: 0.8706106543540955, model saved 
+[2026-02-19 16:54:57] [INFO] : ------------- Now start epoch 48-------------  
+[2026-02-19 16:55:10] [INFO] : train_loss:0.1095 seg_acc:0.8944 seg_iou:0.8647 inst_acc:0.9967 inst_f1:0.9362 bottom_acc:0.9906 bottom_iou:0.9387 
+[2026-02-19 16:55:11] [INFO] : val_loss:0.1511 seg_acc:0.8956 seg_iou:0.8709 inst_acc:0.9964 inst_f1:0.9345 bottom_acc:0.9913 bottom_iou:0.9431 
+[2026-02-19 16:55:11] [INFO] : best metric: 0.8708534240722656, model saved 
+[2026-02-19 16:55:11] [INFO] : ------------- Now start epoch 49-------------  
+[2026-02-19 16:55:24] [INFO] : train_loss:0.1104 seg_acc:0.8935 seg_iou:0.8633 inst_acc:0.9967 inst_f1:0.9366 bottom_acc:0.9906 bottom_iou:0.9387 
+[2026-02-19 16:55:26] [INFO] : val_loss:0.1526 seg_acc:0.8958 seg_iou:0.8713 inst_acc:0.9965 inst_f1:0.9352 bottom_acc:0.9916 bottom_iou:0.9446 
+[2026-02-19 16:55:26] [INFO] : best metric: 0.871305525302887, model saved 
+[2026-02-19 16:55:26] [INFO] : ------------- Now start epoch 50-------------  
+[2026-02-19 16:55:39] [INFO] : train_loss:0.1049 seg_acc:0.8965 seg_iou:0.8681 inst_acc:0.9969 inst_f1:0.9402 bottom_acc:0.9909 bottom_iou:0.9405 
+[2026-02-19 16:55:40] [INFO] : val_loss:0.1510 seg_acc:0.8959 seg_iou:0.8722 inst_acc:0.9964 inst_f1:0.9347 bottom_acc:0.9918 bottom_iou:0.9459 
+[2026-02-19 16:55:40] [INFO] : best metric: 0.8722113370895386, model saved 
+[2026-02-19 16:55:40] [INFO] : ------------- Now start epoch 51-------------  
+[2026-02-19 16:55:53] [INFO] : train_loss:0.1041 seg_acc:0.8964 seg_iou:0.8676 inst_acc:0.9970 inst_f1:0.9409 bottom_acc:0.9909 bottom_iou:0.9408 
+[2026-02-19 16:55:55] [INFO] : val_loss:0.1598 seg_acc:0.8963 seg_iou:0.8708 inst_acc:0.9967 inst_f1:0.9394 bottom_acc:0.9915 bottom_iou:0.9443 
+[2026-02-19 16:55:55] [INFO] : ------------- Now start epoch 52-------------  
+[2026-02-19 16:56:08] [INFO] : train_loss:0.1007 seg_acc:0.8976 seg_iou:0.8695 inst_acc:0.9970 inst_f1:0.9424 bottom_acc:0.9911 bottom_iou:0.9418 
+[2026-02-19 16:56:09] [INFO] : val_loss:0.1538 seg_acc:0.8970 seg_iou:0.8715 inst_acc:0.9966 inst_f1:0.9376 bottom_acc:0.9917 bottom_iou:0.9453 
+[2026-02-19 16:56:09] [INFO] : ------------- Now start epoch 53-------------  
+[2026-02-19 16:56:22] [INFO] : train_loss:0.0978 seg_acc:0.8986 seg_iou:0.8712 inst_acc:0.9971 inst_f1:0.9431 bottom_acc:0.9913 bottom_iou:0.9433 
+[2026-02-19 16:56:24] [INFO] : val_loss:0.1592 seg_acc:0.8971 seg_iou:0.8733 inst_acc:0.9965 inst_f1:0.9358 bottom_acc:0.9918 bottom_iou:0.9461 
+[2026-02-19 16:56:24] [INFO] : best metric: 0.8733402490615845, model saved 
+[2026-02-19 16:56:24] [INFO] : ------------- Now start epoch 54-------------  
+[2026-02-19 16:56:37] [INFO] : train_loss:0.0949 seg_acc:0.8999 seg_iou:0.8734 inst_acc:0.9971 inst_f1:0.9453 bottom_acc:0.9917 bottom_iou:0.9456 
+[2026-02-19 16:56:38] [INFO] : val_loss:0.1704 seg_acc:0.8956 seg_iou:0.8698 inst_acc:0.9967 inst_f1:0.9401 bottom_acc:0.9918 bottom_iou:0.9457 
+[2026-02-19 16:56:38] [INFO] : ------------- Now start epoch 55-------------  
+[2026-02-19 16:56:51] [INFO] : train_loss:0.0957 seg_acc:0.8991 seg_iou:0.8720 inst_acc:0.9972 inst_f1:0.9442 bottom_acc:0.9917 bottom_iou:0.9459 
+[2026-02-19 16:56:53] [INFO] : val_loss:0.1694 seg_acc:0.8963 seg_iou:0.8732 inst_acc:0.9965 inst_f1:0.9367 bottom_acc:0.9921 bottom_iou:0.9478 
+[2026-02-19 16:56:53] [INFO] : ------------- Now start epoch 56-------------  
+[2026-02-19 16:57:06] [INFO] : train_loss:0.0914 seg_acc:0.9006 seg_iou:0.8744 inst_acc:0.9973 inst_f1:0.9475 bottom_acc:0.9916 bottom_iou:0.9452 
+[2026-02-19 16:57:07] [INFO] : val_loss:0.1563 seg_acc:0.8966 seg_iou:0.8739 inst_acc:0.9968 inst_f1:0.9414 bottom_acc:0.9924 bottom_iou:0.9496 
+[2026-02-19 16:57:07] [INFO] : best metric: 0.8738844394683838, model saved 
+[2026-02-19 16:57:07] [INFO] : ------------- Now start epoch 57-------------  
+[2026-02-19 16:57:20] [INFO] : train_loss:0.0944 seg_acc:0.9001 seg_iou:0.8729 inst_acc:0.9972 inst_f1:0.9453 bottom_acc:0.9919 bottom_iou:0.9468 
+[2026-02-19 16:57:22] [INFO] : val_loss:0.1614 seg_acc:0.8956 seg_iou:0.8713 inst_acc:0.9967 inst_f1:0.9398 bottom_acc:0.9919 bottom_iou:0.9465 
+[2026-02-19 16:57:22] [INFO] : ------------- Now start epoch 58-------------  
+[2026-02-19 16:57:35] [INFO] : train_loss:0.0865 seg_acc:0.9025 seg_iou:0.8776 inst_acc:0.9974 inst_f1:0.9505 bottom_acc:0.9923 bottom_iou:0.9495 
+[2026-02-19 16:57:36] [INFO] : val_loss:0.1714 seg_acc:0.8977 seg_iou:0.8739 inst_acc:0.9965 inst_f1:0.9357 bottom_acc:0.9923 bottom_iou:0.9493 
+[2026-02-19 16:57:36] [INFO] : best metric: 0.8739414215087891, model saved 
+[2026-02-19 16:57:36] [INFO] : ------------- Now start epoch 59-------------  
+[2026-02-19 16:57:49] [INFO] : train_loss:0.0829 seg_acc:0.9043 seg_iou:0.8804 inst_acc:0.9976 inst_f1:0.9527 bottom_acc:0.9925 bottom_iou:0.9511 
+[2026-02-19 16:57:51] [INFO] : val_loss:0.1695 seg_acc:0.8978 seg_iou:0.8735 inst_acc:0.9969 inst_f1:0.9431 bottom_acc:0.9924 bottom_iou:0.9499 
+[2026-02-19 16:57:51] [INFO] : ------------- Now start epoch 60-------------  
+[2026-02-19 16:58:04] [INFO] : train_loss:0.0794 seg_acc:0.9054 seg_iou:0.8823 inst_acc:0.9977 inst_f1:0.9557 bottom_acc:0.9928 bottom_iou:0.9531 
+[2026-02-19 16:58:05] [INFO] : val_loss:0.1782 seg_acc:0.8980 seg_iou:0.8736 inst_acc:0.9969 inst_f1:0.9434 bottom_acc:0.9921 bottom_iou:0.9476 
+[2026-02-19 16:58:05] [INFO] : ------------- Now start epoch 61-------------  
+[2026-02-19 16:58:18] [INFO] : train_loss:0.0822 seg_acc:0.9041 seg_iou:0.8803 inst_acc:0.9975 inst_f1:0.9526 bottom_acc:0.9925 bottom_iou:0.9510 
+[2026-02-19 16:58:20] [INFO] : val_loss:0.1643 seg_acc:0.8973 seg_iou:0.8749 inst_acc:0.9969 inst_f1:0.9429 bottom_acc:0.9925 bottom_iou:0.9506 
+[2026-02-19 16:58:20] [INFO] : best metric: 0.8748507499694824, model saved 
+[2026-02-19 16:58:20] [INFO] : ------------- Now start epoch 62-------------  
+[2026-02-19 16:58:33] [INFO] : train_loss:0.0776 seg_acc:0.9061 seg_iou:0.8833 inst_acc:0.9978 inst_f1:0.9565 bottom_acc:0.9931 bottom_iou:0.9549 
+[2026-02-19 16:58:34] [INFO] : val_loss:0.1765 seg_acc:0.8983 seg_iou:0.8740 inst_acc:0.9969 inst_f1:0.9438 bottom_acc:0.9925 bottom_iou:0.9503 
+[2026-02-19 16:58:34] [INFO] : ------------- Now start epoch 63-------------  
+[2026-02-19 16:58:47] [INFO] : train_loss:0.0767 seg_acc:0.9063 seg_iou:0.8840 inst_acc:0.9978 inst_f1:0.9575 bottom_acc:0.9931 bottom_iou:0.9546 
+[2026-02-19 16:58:49] [INFO] : val_loss:0.1534 seg_acc:0.8976 seg_iou:0.8747 inst_acc:0.9968 inst_f1:0.9410 bottom_acc:0.9926 bottom_iou:0.9512 
+[2026-02-19 16:58:49] [INFO] : ------------- Now start epoch 64-------------  
+[2026-02-19 16:59:02] [INFO] : train_loss:0.0735 seg_acc:0.9074 seg_iou:0.8856 inst_acc:0.9979 inst_f1:0.9592 bottom_acc:0.9932 bottom_iou:0.9553 
+[2026-02-19 16:59:03] [INFO] : val_loss:0.1644 seg_acc:0.8989 seg_iou:0.8739 inst_acc:0.9972 inst_f1:0.9479 bottom_acc:0.9926 bottom_iou:0.9513 
+[2026-02-19 16:59:03] [INFO] : ------------- Now start epoch 65-------------  
+[2026-02-19 16:59:16] [INFO] : train_loss:0.0707 seg_acc:0.9083 seg_iou:0.8874 inst_acc:0.9980 inst_f1:0.9603 bottom_acc:0.9934 bottom_iou:0.9567 
+[2026-02-19 16:59:18] [INFO] : val_loss:0.1630 seg_acc:0.8991 seg_iou:0.8765 inst_acc:0.9972 inst_f1:0.9475 bottom_acc:0.9927 bottom_iou:0.9516 
+[2026-02-19 16:59:18] [INFO] : best metric: 0.8765121698379517, model saved 
+[2026-02-19 16:59:18] [INFO] : ------------- Now start epoch 66-------------  
+[2026-02-19 16:59:31] [INFO] : train_loss:0.0688 seg_acc:0.9094 seg_iou:0.8894 inst_acc:0.9980 inst_f1:0.9615 bottom_acc:0.9935 bottom_iou:0.9575 
+[2026-02-19 16:59:33] [INFO] : val_loss:0.1736 seg_acc:0.8977 seg_iou:0.8760 inst_acc:0.9971 inst_f1:0.9468 bottom_acc:0.9928 bottom_iou:0.9527 
+[2026-02-19 16:59:33] [INFO] : ------------- Now start epoch 67-------------  
+[2026-02-19 16:59:45] [INFO] : train_loss:0.0666 seg_acc:0.9095 seg_iou:0.8896 inst_acc:0.9980 inst_f1:0.9618 bottom_acc:0.9937 bottom_iou:0.9586 
+[2026-02-19 16:59:47] [INFO] : val_loss:0.1669 seg_acc:0.8980 seg_iou:0.8766 inst_acc:0.9971 inst_f1:0.9465 bottom_acc:0.9929 bottom_iou:0.9531 
+[2026-02-19 16:59:47] [INFO] : best metric: 0.8766173720359802, model saved 
+[2026-02-19 16:59:47] [INFO] : ------------- Now start epoch 68-------------  
+[2026-02-19 17:00:00] [INFO] : train_loss:0.0683 seg_acc:0.9091 seg_iou:0.8889 inst_acc:0.9980 inst_f1:0.9611 bottom_acc:0.9937 bottom_iou:0.9587 
+[2026-02-19 17:00:02] [INFO] : val_loss:0.1643 seg_acc:0.8979 seg_iou:0.8763 inst_acc:0.9972 inst_f1:0.9475 bottom_acc:0.9929 bottom_iou:0.9530 
+[2026-02-19 17:00:02] [INFO] : ------------- Now start epoch 69-------------  
+[2026-02-19 17:00:14] [INFO] : train_loss:0.0681 seg_acc:0.9093 seg_iou:0.8892 inst_acc:0.9980 inst_f1:0.9611 bottom_acc:0.9938 bottom_iou:0.9591 
+[2026-02-19 17:00:16] [INFO] : val_loss:0.1728 seg_acc:0.8997 seg_iou:0.8777 inst_acc:0.9971 inst_f1:0.9473 bottom_acc:0.9930 bottom_iou:0.9539 
+[2026-02-19 17:00:16] [INFO] : best metric: 0.8777285814285278, model saved 
+[2026-02-19 17:00:16] [INFO] : ------------- Now start epoch 70-------------  
+[2026-02-19 17:00:29] [INFO] : train_loss:0.0636 seg_acc:0.9107 seg_iou:0.8917 inst_acc:0.9981 inst_f1:0.9627 bottom_acc:0.9940 bottom_iou:0.9604 
+[2026-02-19 17:00:30] [INFO] : val_loss:0.1714 seg_acc:0.8995 seg_iou:0.8769 inst_acc:0.9972 inst_f1:0.9482 bottom_acc:0.9930 bottom_iou:0.9536 
+[2026-02-19 17:00:30] [INFO] : ------------- Now start epoch 71-------------  
+[2026-02-19 17:00:43] [INFO] : train_loss:0.0656 seg_acc:0.9102 seg_iou:0.8907 inst_acc:0.9981 inst_f1:0.9630 bottom_acc:0.9938 bottom_iou:0.9594 
+[2026-02-19 17:00:45] [INFO] : val_loss:0.1679 seg_acc:0.8991 seg_iou:0.8773 inst_acc:0.9973 inst_f1:0.9508 bottom_acc:0.9930 bottom_iou:0.9538 
+[2026-02-19 17:00:45] [INFO] : ------------- Now start epoch 72-------------  
+[2026-02-19 17:00:58] [INFO] : train_loss:0.0649 seg_acc:0.9104 seg_iou:0.8913 inst_acc:0.9981 inst_f1:0.9624 bottom_acc:0.9940 bottom_iou:0.9602 
+[2026-02-19 17:00:59] [INFO] : val_loss:0.1688 seg_acc:0.8994 seg_iou:0.8775 inst_acc:0.9973 inst_f1:0.9498 bottom_acc:0.9930 bottom_iou:0.9540 
+[2026-02-19 17:00:59] [INFO] : ------------- Now start epoch 73-------------  
+[2026-02-19 17:01:12] [INFO] : train_loss:0.0627 seg_acc:0.9112 seg_iou:0.8924 inst_acc:0.9981 inst_f1:0.9642 bottom_acc:0.9941 bottom_iou:0.9615 
+[2026-02-19 17:01:14] [INFO] : val_loss:0.1804 seg_acc:0.8980 seg_iou:0.8758 inst_acc:0.9972 inst_f1:0.9480 bottom_acc:0.9932 bottom_iou:0.9547 
+[2026-02-19 17:01:14] [INFO] : ------------- Now start epoch 74-------------  
+[2026-02-19 17:01:27] [INFO] : train_loss:0.0594 seg_acc:0.9125 seg_iou:0.8946 inst_acc:0.9982 inst_f1:0.9655 bottom_acc:0.9944 bottom_iou:0.9631 
+[2026-02-19 17:01:28] [INFO] : val_loss:0.1834 seg_acc:0.8998 seg_iou:0.8777 inst_acc:0.9973 inst_f1:0.9497 bottom_acc:0.9933 bottom_iou:0.9555 
+[2026-02-19 17:01:28] [INFO] : ------------- Now start epoch 75-------------  
+[2026-02-19 17:01:41] [INFO] : train_loss:0.0574 seg_acc:0.9132 seg_iou:0.8960 inst_acc:0.9982 inst_f1:0.9657 bottom_acc:0.9945 bottom_iou:0.9640 
+[2026-02-19 17:01:42] [INFO] : val_loss:0.1762 seg_acc:0.9000 seg_iou:0.8784 inst_acc:0.9973 inst_f1:0.9506 bottom_acc:0.9932 bottom_iou:0.9549 
+[2026-02-19 17:01:42] [INFO] : best metric: 0.8784099817276001, model saved 
+[2026-02-19 17:01:42] [INFO] : ------------- Now start epoch 76-------------  
+[2026-02-19 17:01:55] [INFO] : train_loss:0.0581 seg_acc:0.9129 seg_iou:0.8955 inst_acc:0.9982 inst_f1:0.9657 bottom_acc:0.9946 bottom_iou:0.9643 
+[2026-02-19 17:01:57] [INFO] : val_loss:0.1765 seg_acc:0.8998 seg_iou:0.8780 inst_acc:0.9972 inst_f1:0.9478 bottom_acc:0.9932 bottom_iou:0.9552 
+[2026-02-19 17:01:57] [INFO] : ------------- Now start epoch 77-------------  
+[2026-02-19 17:02:10] [INFO] : train_loss:0.0592 seg_acc:0.9123 seg_iou:0.8943 inst_acc:0.9982 inst_f1:0.9645 bottom_acc:0.9945 bottom_iou:0.9637 
+[2026-02-19 17:02:11] [INFO] : val_loss:0.1727 seg_acc:0.8997 seg_iou:0.8778 inst_acc:0.9974 inst_f1:0.9513 bottom_acc:0.9933 bottom_iou:0.9561 
+[2026-02-19 17:02:11] [INFO] : ------------- Now start epoch 78-------------  
+[2026-02-19 17:02:24] [INFO] : train_loss:0.0564 seg_acc:0.9136 seg_iou:0.8967 inst_acc:0.9983 inst_f1:0.9666 bottom_acc:0.9947 bottom_iou:0.9651 
+[2026-02-19 17:02:26] [INFO] : val_loss:0.1727 seg_acc:0.8995 seg_iou:0.8774 inst_acc:0.9974 inst_f1:0.9526 bottom_acc:0.9935 bottom_iou:0.9567 
+[2026-02-19 17:02:26] [INFO] : ------------- Now start epoch 79-------------  
+[2026-02-19 17:02:39] [INFO] : train_loss:0.0553 seg_acc:0.9140 seg_iou:0.8978 inst_acc:0.9983 inst_f1:0.9671 bottom_acc:0.9947 bottom_iou:0.9650 
+[2026-02-19 17:02:40] [INFO] : val_loss:0.1741 seg_acc:0.8994 seg_iou:0.8774 inst_acc:0.9973 inst_f1:0.9506 bottom_acc:0.9934 bottom_iou:0.9562 
+[2026-02-19 17:02:40] [INFO] : ------------- Now start epoch 80-------------  
+[2026-02-19 17:02:53] [INFO] : train_loss:0.0548 seg_acc:0.9142 seg_iou:0.8979 inst_acc:0.9984 inst_f1:0.9678 bottom_acc:0.9949 bottom_iou:0.9662 
+[2026-02-19 17:02:55] [INFO] : val_loss:0.1773 seg_acc:0.9000 seg_iou:0.8786 inst_acc:0.9975 inst_f1:0.9527 bottom_acc:0.9935 bottom_iou:0.9567 
+[2026-02-19 17:02:55] [INFO] : best metric: 0.87864089012146, model saved 
+[2026-02-19 17:02:55] [INFO] : ------------- Now start epoch 81-------------  
+[2026-02-19 17:03:07] [INFO] : train_loss:0.0538 seg_acc:0.9145 seg_iou:0.8985 inst_acc:0.9983 inst_f1:0.9677 bottom_acc:0.9949 bottom_iou:0.9662 
+[2026-02-19 17:03:09] [INFO] : val_loss:0.1857 seg_acc:0.8994 seg_iou:0.8779 inst_acc:0.9974 inst_f1:0.9523 bottom_acc:0.9932 bottom_iou:0.9553 
+[2026-02-19 17:03:09] [INFO] : ------------- Now start epoch 82-------------  
+[2026-02-19 17:03:22] [INFO] : train_loss:0.0526 seg_acc:0.9149 seg_iou:0.8991 inst_acc:0.9984 inst_f1:0.9685 bottom_acc:0.9950 bottom_iou:0.9672 
+[2026-02-19 17:03:24] [INFO] : val_loss:0.1756 seg_acc:0.9001 seg_iou:0.8784 inst_acc:0.9975 inst_f1:0.9533 bottom_acc:0.9935 bottom_iou:0.9571 
+[2026-02-19 17:03:24] [INFO] : ------------- Now start epoch 83-------------  
+[2026-02-19 17:03:36] [INFO] : train_loss:0.0520 seg_acc:0.9150 seg_iou:0.8992 inst_acc:0.9984 inst_f1:0.9686 bottom_acc:0.9950 bottom_iou:0.9672 
+[2026-02-19 17:03:38] [INFO] : val_loss:0.1769 seg_acc:0.9009 seg_iou:0.8791 inst_acc:0.9975 inst_f1:0.9529 bottom_acc:0.9934 bottom_iou:0.9563 
+[2026-02-19 17:03:38] [INFO] : best metric: 0.8790637850761414, model saved 
+[2026-02-19 17:03:38] [INFO] : ------------- Now start epoch 84-------------  
+[2026-02-19 17:03:51] [INFO] : train_loss:0.0503 seg_acc:0.9158 seg_iou:0.9007 inst_acc:0.9984 inst_f1:0.9695 bottom_acc:0.9953 bottom_iou:0.9689 
+[2026-02-19 17:03:52] [INFO] : val_loss:0.1758 seg_acc:0.9007 seg_iou:0.8794 inst_acc:0.9975 inst_f1:0.9532 bottom_acc:0.9935 bottom_iou:0.9570 
+[2026-02-19 17:03:52] [INFO] : best metric: 0.8793665170669556, model saved 
+[2026-02-19 17:03:52] [INFO] : ------------- Now start epoch 85-------------  
+[2026-02-19 17:04:05] [INFO] : train_loss:0.0508 seg_acc:0.9154 seg_iou:0.8998 inst_acc:0.9984 inst_f1:0.9694 bottom_acc:0.9952 bottom_iou:0.9680 
+[2026-02-19 17:04:07] [INFO] : val_loss:0.1772 seg_acc:0.9009 seg_iou:0.8795 inst_acc:0.9975 inst_f1:0.9536 bottom_acc:0.9935 bottom_iou:0.9568 
+[2026-02-19 17:04:07] [INFO] : best metric: 0.8795456290245056, model saved 
+[2026-02-19 17:04:07] [INFO] : ------------- Now start epoch 86-------------  
+[2026-02-19 17:04:20] [INFO] : train_loss:0.0499 seg_acc:0.9157 seg_iou:0.9006 inst_acc:0.9984 inst_f1:0.9694 bottom_acc:0.9954 bottom_iou:0.9695 
+[2026-02-19 17:04:22] [INFO] : val_loss:0.1848 seg_acc:0.9004 seg_iou:0.8792 inst_acc:0.9975 inst_f1:0.9538 bottom_acc:0.9936 bottom_iou:0.9573 
+[2026-02-19 17:04:22] [INFO] : ------------- Now start epoch 87-------------  
+[2026-02-19 17:04:35] [INFO] : train_loss:0.0492 seg_acc:0.9162 seg_iou:0.9015 inst_acc:0.9984 inst_f1:0.9697 bottom_acc:0.9954 bottom_iou:0.9694 
+[2026-02-19 17:04:36] [INFO] : val_loss:0.1817 seg_acc:0.9009 seg_iou:0.8795 inst_acc:0.9975 inst_f1:0.9538 bottom_acc:0.9935 bottom_iou:0.9572 
+[2026-02-19 17:04:36] [INFO] : ------------- Now start epoch 88-------------  
+[2026-02-19 17:04:49] [INFO] : train_loss:0.0488 seg_acc:0.9161 seg_iou:0.9014 inst_acc:0.9985 inst_f1:0.9701 bottom_acc:0.9954 bottom_iou:0.9699 
+[2026-02-19 17:04:51] [INFO] : val_loss:0.1820 seg_acc:0.9011 seg_iou:0.8794 inst_acc:0.9975 inst_f1:0.9539 bottom_acc:0.9935 bottom_iou:0.9568 
+[2026-02-19 17:04:51] [INFO] : ------------- Now start epoch 89-------------  
+[2026-02-19 17:05:04] [INFO] : train_loss:0.0483 seg_acc:0.9169 seg_iou:0.9028 inst_acc:0.9984 inst_f1:0.9702 bottom_acc:0.9954 bottom_iou:0.9698 
+[2026-02-19 17:05:06] [INFO] : val_loss:0.1809 seg_acc:0.9010 seg_iou:0.8801 inst_acc:0.9975 inst_f1:0.9533 bottom_acc:0.9936 bottom_iou:0.9579 
+[2026-02-19 17:05:06] [INFO] : best metric: 0.8800936937332153, model saved 
+[2026-02-19 17:05:06] [INFO] : ------------- Now start epoch 90-------------  
+[2026-02-19 17:05:19] [INFO] : train_loss:0.0479 seg_acc:0.9171 seg_iou:0.9031 inst_acc:0.9985 inst_f1:0.9706 bottom_acc:0.9955 bottom_iou:0.9703 
+[2026-02-19 17:05:21] [INFO] : val_loss:0.1795 seg_acc:0.9010 seg_iou:0.8797 inst_acc:0.9975 inst_f1:0.9541 bottom_acc:0.9935 bottom_iou:0.9573 
+[2026-02-19 17:05:21] [INFO] : ------------- Now start epoch 91-------------  
+[2026-02-19 17:05:34] [INFO] : train_loss:0.0481 seg_acc:0.9164 seg_iou:0.9018 inst_acc:0.9985 inst_f1:0.9706 bottom_acc:0.9956 bottom_iou:0.9708 
+[2026-02-19 17:05:36] [INFO] : val_loss:0.1786 seg_acc:0.9005 seg_iou:0.8790 inst_acc:0.9976 inst_f1:0.9549 bottom_acc:0.9936 bottom_iou:0.9575 
+[2026-02-19 17:05:36] [INFO] : ------------- Now start epoch 92-------------  
+[2026-02-19 17:05:49] [INFO] : train_loss:0.0482 seg_acc:0.9164 seg_iou:0.9019 inst_acc:0.9985 inst_f1:0.9706 bottom_acc:0.9954 bottom_iou:0.9698 
+[2026-02-19 17:05:51] [INFO] : val_loss:0.1792 seg_acc:0.9007 seg_iou:0.8795 inst_acc:0.9976 inst_f1:0.9551 bottom_acc:0.9936 bottom_iou:0.9576 
+[2026-02-19 17:05:51] [INFO] : ------------- Now start epoch 93-------------  
+[2026-02-19 17:06:03] [INFO] : train_loss:0.0475 seg_acc:0.9167 seg_iou:0.9027 inst_acc:0.9985 inst_f1:0.9707 bottom_acc:0.9956 bottom_iou:0.9708 
+[2026-02-19 17:06:05] [INFO] : val_loss:0.1797 seg_acc:0.9009 seg_iou:0.8798 inst_acc:0.9976 inst_f1:0.9549 bottom_acc:0.9936 bottom_iou:0.9577 
+[2026-02-19 17:06:05] [INFO] : ------------- Now start epoch 94-------------  
+[2026-02-19 17:06:18] [INFO] : train_loss:0.0474 seg_acc:0.9172 seg_iou:0.9033 inst_acc:0.9985 inst_f1:0.9705 bottom_acc:0.9956 bottom_iou:0.9708 
+[2026-02-19 17:06:20] [INFO] : val_loss:0.1795 seg_acc:0.9006 seg_iou:0.8793 inst_acc:0.9976 inst_f1:0.9552 bottom_acc:0.9937 bottom_iou:0.9580 
+[2026-02-19 17:06:20] [INFO] : ------------- Now start epoch 95-------------  
+[2026-02-19 17:06:33] [INFO] : train_loss:0.0468 seg_acc:0.9167 seg_iou:0.9026 inst_acc:0.9985 inst_f1:0.9708 bottom_acc:0.9956 bottom_iou:0.9708 
+[2026-02-19 17:06:35] [INFO] : val_loss:0.1809 seg_acc:0.9007 seg_iou:0.8794 inst_acc:0.9976 inst_f1:0.9550 bottom_acc:0.9936 bottom_iou:0.9578 
+[2026-02-19 17:06:35] [INFO] : ------------- Now start epoch 96-------------  
+[2026-02-19 17:06:47] [INFO] : train_loss:0.0471 seg_acc:0.9172 seg_iou:0.9032 inst_acc:0.9985 inst_f1:0.9707 bottom_acc:0.9955 bottom_iou:0.9705 
+[2026-02-19 17:06:49] [INFO] : val_loss:0.1810 seg_acc:0.9007 seg_iou:0.8794 inst_acc:0.9976 inst_f1:0.9550 bottom_acc:0.9937 bottom_iou:0.9582 
+[2026-02-19 17:06:49] [INFO] : ------------- Now start epoch 97-------------  
+[2026-02-19 17:07:02] [INFO] : train_loss:0.0464 seg_acc:0.9171 seg_iou:0.9033 inst_acc:0.9985 inst_f1:0.9708 bottom_acc:0.9958 bottom_iou:0.9720 
+[2026-02-19 17:07:04] [INFO] : val_loss:0.1802 seg_acc:0.9008 seg_iou:0.8795 inst_acc:0.9976 inst_f1:0.9550 bottom_acc:0.9937 bottom_iou:0.9583 
+[2026-02-19 17:07:04] [INFO] : ------------- Now start epoch 98-------------  
+[2026-02-19 17:07:17] [INFO] : train_loss:0.0470 seg_acc:0.9168 seg_iou:0.9026 inst_acc:0.9985 inst_f1:0.9707 bottom_acc:0.9956 bottom_iou:0.9710 
+[2026-02-19 17:07:19] [INFO] : val_loss:0.1804 seg_acc:0.9006 seg_iou:0.8794 inst_acc:0.9976 inst_f1:0.9550 bottom_acc:0.9937 bottom_iou:0.9583 
+[2026-02-19 17:07:19] [INFO] : ------------- Now start epoch 99-------------  
+[2026-02-19 17:07:32] [INFO] : train_loss:0.0466 seg_acc:0.9173 seg_iou:0.9038 inst_acc:0.9985 inst_f1:0.9708 bottom_acc:0.9956 bottom_iou:0.9710 
+[2026-02-19 17:07:34] [INFO] : val_loss:0.1802 seg_acc:0.9007 seg_iou:0.8795 inst_acc:0.9976 inst_f1:0.9548 bottom_acc:0.9937 bottom_iou:0.9584 
+[2026-02-19 17:08:10] [INFO] : ------------- Now start testing -------------  
+[2026-02-19 17:08:12] [INFO] : test_loss:0.0905 seg_acc:0.9085 seg_iou:0.8904 inst_acc:0.9982 inst_f1:0.9670 bottom_acc:0.9949 bottom_iou:0.9665 

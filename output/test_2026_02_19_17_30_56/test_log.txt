@@ -1,0 +1,41 @@
+[2026-02-19 17:31:37] [INFO] : ------------- Now start testing -------------  
+[2026-02-19 17:31:39] [INFO] : ========== Overall Test Results ========== 
+[2026-02-19 17:31:39] [INFO] : test_loss:       0.0922 
+[2026-02-19 17:31:39] [INFO] : seg_acc:         0.9080 
+[2026-02-19 17:31:39] [INFO] : seg_iou:         0.8897 
+[2026-02-19 17:31:39] [INFO] : inst_acc:        0.9982 
+[2026-02-19 17:31:39] [INFO] : inst_f1:         0.9655 
+[2026-02-19 17:31:39] [INFO] : bottom_acc:      0.9950 
+[2026-02-19 17:31:39] [INFO] : bottom_iou:      0.9670 
+[2026-02-19 17:31:39] [INFO] : 
+========== Per-Class Seg Accuracy ========== 
+[2026-02-19 17:31:39] [INFO] : chamfer                        (class  0): 0.9342 (1291 samples) 
+[2026-02-19 17:31:39] [INFO] : through_hole                   (class  1): 0.9550 (1200 samples) 
+[2026-02-19 17:31:39] [INFO] : triangular_passage             (class  2): 0.9862 (3467 samples) 
+[2026-02-19 17:31:39] [INFO] : rectangular_passage            (class  3): 0.9928 (4829 samples) 
+[2026-02-19 17:31:39] [INFO] : 6sides_passage                 (class  4): 0.9957 (6936 samples) 
+[2026-02-19 17:31:39] [INFO] : triangular_through_slot        (class  5): 0.9779 (769 samples) 
+[2026-02-19 17:31:39] [INFO] : rectangular_through_slot       (class  6): 0.9333 (1185 samples) 
+[2026-02-19 17:31:39] [INFO] : circular_through_slot          (class  7): 0.9860 (358 samples) 
+[2026-02-19 17:31:39] [INFO] : rectangular_through_step       (class  8): 0.9358 (2134 samples) 
+[2026-02-19 17:31:39] [INFO] : 2sides_through_step            (class  9): 0.9873 (3462 samples) 
+[2026-02-19 17:31:39] [INFO] : slanted_through_step           (class 10): 0.9675 (2155 samples) 
+[2026-02-19 17:31:39] [INFO] : Oring                          (class 11): 0.9855 (3248 samples) 
+[2026-02-19 17:31:39] [INFO] : blind_hole                     (class 12): 0.9646 (2176 samples) 
+[2026-02-19 17:31:39] [INFO] : triangular_pocket              (class 13): 0.9927 (4526 samples) 
+[2026-02-19 17:31:39] [INFO] : rectangular_pocket             (class 14): 0.9908 (5006 samples) 
+[2026-02-19 17:31:39] [INFO] : 6sides_pocket                  (class 15): 0.9967 (6993 samples) 
+[2026-02-19 17:31:39] [INFO] : circular_end_pocket            (class 16): 0.9912 (5027 samples) 
+[2026-02-19 17:31:39] [INFO] : rectangular_blind_slot         (class 17): 0.9705 (1424 samples) 
+[2026-02-19 17:31:39] [INFO] : v_circular_end_blind_slot      (class 18): 0.9906 (1389 samples) 
+[2026-02-19 17:31:39] [INFO] : h_circular_end_blind_slot      (class 19): 0.9922 (1290 samples) 
+[2026-02-19 17:31:39] [INFO] : triangular_blind_step          (class 20): 0.9915 (2117 samples) 
+[2026-02-19 17:31:39] [INFO] : circular_blind_step            (class 21): 0.9964 (2247 samples) 
+[2026-02-19 17:31:39] [INFO] : rectangular_blind_step         (class 22): 0.9839 (3229 samples) 
+[2026-02-19 17:31:39] [INFO] : round                          (class 23): 0.9306 (1181 samples) 
+[2026-02-19 17:31:39] [INFO] : plane                          (class 24): 0.9786 (3128 samples) 
+[2026-02-19 17:31:39] [INFO] : cylinder                       (class 25): 0.9845 (2135 samples) 
+[2026-02-19 17:31:39] [INFO] : cone                           (class 26): 0.8502 (1295 samples) 
+[2026-02-19 17:31:39] [INFO] : class_27                       (class 27): 0.9989 (28199 samples) 
+[2026-02-19 17:31:39] [INFO] : class_28                       (class 28): N/A (0 samples) 
+[2026-02-19 17:31:39] [INFO] : class_29                       (class 29): N/A (0 samples) 

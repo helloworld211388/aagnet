@@ -1,3 +1,4 @@
+import pickle
 import numpy as np
 from tqdm import tqdm
 from abc import abstractmethod
@@ -49,42 +50,64 @@ class BaseDataset(Dataset):
                 result.append(one_graph)
         return result
 
-    def load_graphs(self, 
-                    file_path, 
-                    graphs=None, 
-                    split_file_list=None, 
-                    center_and_scale_grid=True, 
-                    normalization_attribute=True, 
+    def load_graphs(self,
+                    file_path,
+                    graphs=None,
+                    split_file_list=None,
+                    center_and_scale_grid=True,
+                    normalization_attribute=True,
                     num_threads=4):
         self.data = []
-        if graphs:
-            self.dataset = graphs
-        else:
-            self.dataset = load_json_or_pkl(file_path.joinpath('graphs.json'))
         if normalization_attribute:
             stat = load_statistics(file_path.joinpath('attr_stat.json'))
+        else:
+            stat = None
 
-        # divide the dataset into num_threads chunks
-        chunk_size = (len(self.dataset) + num_threads - 1) // num_threads
-        chunks = [self.dataset[i:i+chunk_size] for i in range(0, len(self.dataset), chunk_size)]
+        samples_dir = file_path / "samples"
+        use_samples = samples_dir.exists()
 
-        # create threads and process each chunk
-        threads = []
-        results = [[] for _ in range(num_threads)]
-        for i in range(num_threads):
-            t = threading.Thread(target=lambda i: results[i].extend(
-                self.process_chunk(
-                    chunks[i], split_file_list, 
-                    normalization_attribute, center_and_scale_grid, stat)), args=(i,))
-            threads.append(t)
-            t.start()
+        if use_samples:
+            self.dataset = []  # keep attribute present for compatibility
+            # Load per-sample pkl files on demand — avoids loading full graphs.json
+            fns = sorted(split_file_list) if split_file_list else []
+            for fn in tqdm(fns, desc="Loading graphs"):
+                pkl_path = samples_dir / (fn + ".pkl")
+                if not pkl_path.exists():
+                    continue
+                with open(pkl_path, "rb") as pf:
+                    data = pickle.load(pf)
+                one_graph = self.load_one_graph(fn, data)
+                if one_graph is None:
+                    continue
+                if one_graph["graph"].edata["x"].size(0) == 0:
+                    continue
+                if normalization_attribute:
+                    one_graph = standardization(one_graph, stat)
+                if center_and_scale_grid:
+                    one_graph = center_and_scale(one_graph)
+                self.data.append(one_graph)
+        else:
+            # Fallback: load full graphs.json (legacy path)
+            if graphs:
+                self.dataset = graphs
+            else:
+                self.dataset = load_json_or_pkl(file_path.joinpath('graphs.json'))
 
-        # wait for all threads to finish
-        for t in threads:
-            t.join()
+            chunk_size = max(1, (len(self.dataset) + num_threads - 1) // num_threads)
+            chunks = [self.dataset[i:i+chunk_size] for i in range(0, len(self.dataset), chunk_size)]
 
-        # combine results from all threads
-        self.data = [item for sublist in results for item in sublist]
+            threads = []
+            results = [[] for _ in range(len(chunks))]
+            for i in range(len(chunks)):
+                t = threading.Thread(target=lambda i: results[i].extend(
+                    self.process_chunk(
+                        chunks[i], split_file_list,
+                        normalization_attribute, center_and_scale_grid, stat)), args=(i,))
+                threads.append(t)
+                t.start()
+            for t in threads:
+                t.join()
+            self.data = [item for sublist in results for item in sublist]
 
     def load_one_graph(self, fn, data):
         return None

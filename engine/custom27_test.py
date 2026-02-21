@@ -6,12 +6,15 @@ import torch
 from torch import nn
 import numpy as np
 from torchmetrics.classification import (
-    MulticlassAccuracy, 
-    MulticlassJaccardIndex)
+    MulticlassAccuracy,
+    MulticlassJaccardIndex,
+    BinaryAccuracy,
+    BinaryF1Score,
+    BinaryJaccardIndex)
 import wandb
 
 from dataloader.custom27 import Custom27Dataset
-from models.segmentors import AAGNetSegmentor
+from models.inst_segmentors import AAGNetSegmentor
 from utils.misc import seed_torch, init_logger, print_num_params
 
 
@@ -48,9 +51,9 @@ if __name__ == '__main__':
                 "seed": 42,
                 "device": 'cuda',
                 "architecture": "AAGNetGraphEncoder",
-                "dataset": "../your_dataset_path",  # CHANGE THIS to your dataset path
+                "dataset": "/root/autodl-tmp/project/myDatasets",
                 "batch_size": 256,
-                "weight_path": "output/your_weight.pth",  # CHANGE THIS to your trained weight path
+                "weight_path": "output/2026_02_19_16_39_41/weight_89-epoch.pth",
                 }
         )
     
@@ -102,8 +105,15 @@ if __name__ == '__main__':
                                                shuffle=False, drop_last=False, pin_memory=True)
 
     seg_loss = nn.CrossEntropyLoss()
+    instance_loss = nn.BCEWithLogitsLoss()
+    bottom_loss = nn.BCEWithLogitsLoss()
+
     test_seg_acc = MulticlassAccuracy(num_classes=n_classes).to(device)
     test_seg_iou = MulticlassJaccardIndex(num_classes=n_classes).to(device)
+    test_inst_acc = BinaryAccuracy().to(device)
+    test_inst_f1 = BinaryF1Score().to(device)
+    test_bottom_acc = BinaryAccuracy().to(device)
+    test_bottom_iou = BinaryJaccardIndex().to(device)
 
     save_path = 'output'
     if not os.path.exists(save_path):
@@ -117,42 +127,54 @@ if __name__ == '__main__':
         logger.info(f'------------- Now start testing ------------- ')
         model.eval()
         test_losses = []
-        
-        # For per-class metrics
+
         per_class_correct = torch.zeros(n_classes).to(device)
         per_class_total = torch.zeros(n_classes).to(device)
-        
+
         for data in tqdm(test_loader):
-            graphs = data["graph"].to(device, non_blocking=True)
-            seg_label = graphs.ndata["y"]
-            
-            # Forward pass
-            seg_pred = model(graphs)
-            loss = seg_loss(seg_pred, seg_label)
+            g = data["graph"].to(device, non_blocking=True)
+            inst_label = data["inst_labels"].to(device, non_blocking=True)
+            seg_label = g.ndata["seg_y"]
+            bottom_label = g.ndata["bottom_y"]
+
+            seg_pred, inst_pred, bottom_pred = model(g)
+
+            loss = (seg_loss(seg_pred, seg_label)
+                    + instance_loss(inst_pred, inst_label)
+                    + bottom_loss(bottom_pred, bottom_label))
             test_losses.append(loss.item())
-            
+
             test_seg_acc.update(seg_pred, seg_label)
             test_seg_iou.update(seg_pred, seg_label)
-            
-            # Calculate per-class accuracy
+            test_inst_acc.update(inst_pred.sigmoid(), inst_label.int())
+            test_inst_f1.update(inst_pred.sigmoid(), inst_label.int())
+            test_bottom_acc.update(bottom_pred.sigmoid(), bottom_label.int())
+            test_bottom_iou.update(bottom_pred.sigmoid(), bottom_label.int())
+
             pred_labels = seg_pred.argmax(dim=1)
             for c in range(n_classes):
                 mask = seg_label == c
                 per_class_correct[c] += (pred_labels[mask] == seg_label[mask]).sum()
                 per_class_total[c] += mask.sum()
-        
-        # Overall metrics
+
         mean_test_loss = np.mean(test_losses).item()
         mean_test_seg_acc = test_seg_acc.compute().item()
         mean_test_seg_iou = test_seg_iou.compute().item()
-        
+        mean_test_inst_acc = test_inst_acc.compute().item()
+        mean_test_inst_f1 = test_inst_f1.compute().item()
+        mean_test_bottom_acc = test_bottom_acc.compute().item()
+        mean_test_bottom_iou = test_bottom_iou.compute().item()
+
         logger.info(f'========== Overall Test Results ==========')
-        logger.info(f'test_loss: {mean_test_loss:.4f}')
-        logger.info(f'test_seg_acc: {mean_test_seg_acc:.4f}')
-        logger.info(f'test_seg_iou: {mean_test_seg_iou:.4f}')
-        
-        # Per-class metrics
-        logger.info(f'\n========== Per-Class Accuracy ==========')
+        logger.info(f'test_loss:       {mean_test_loss:.4f}')
+        logger.info(f'seg_acc:         {mean_test_seg_acc:.4f}')
+        logger.info(f'seg_iou:         {mean_test_seg_iou:.4f}')
+        logger.info(f'inst_acc:        {mean_test_inst_acc:.4f}')
+        logger.info(f'inst_f1:         {mean_test_inst_f1:.4f}')
+        logger.info(f'bottom_acc:      {mean_test_bottom_acc:.4f}')
+        logger.info(f'bottom_iou:      {mean_test_bottom_iou:.4f}')
+
+        logger.info(f'\n========== Per-Class Seg Accuracy ==========')
         feature_names = Custom27Dataset.get_feature_names()
         for c in range(n_classes):
             if per_class_total[c] > 0:
@@ -160,15 +182,14 @@ if __name__ == '__main__':
                 logger.info(f'{feature_names[c]:30s} (class {c:2d}): {class_acc:.4f} ({int(per_class_total[c])} samples)')
             else:
                 logger.info(f'{feature_names[c]:30s} (class {c:2d}): N/A (0 samples)')
-        
-        # Log to wandb
-        wandb.log({
-            'test_loss': mean_test_loss, 
-            'test_seg_acc': mean_test_seg_acc, 
-            'test_seg_iou': mean_test_seg_iou
-        })
-        
+
+        wandb.log({'test_loss': mean_test_loss,
+                   'test_seg_acc': mean_test_seg_acc, 'test_seg_iou': mean_test_seg_iou,
+                   'test_inst_acc': mean_test_inst_acc, 'test_inst_f1': mean_test_inst_f1,
+                   'test_bottom_acc': mean_test_bottom_acc, 'test_bottom_iou': mean_test_bottom_iou})
+
         print(f"\n========== Test Complete ==========")
-        print(f"Overall Accuracy: {mean_test_seg_acc:.4f}")
-        print(f"Overall IoU: {mean_test_seg_iou:.4f}")
+        print(f"Seg  Acc: {mean_test_seg_acc:.4f}  IoU: {mean_test_seg_iou:.4f}")
+        print(f"Inst Acc: {mean_test_inst_acc:.4f}  F1:  {mean_test_inst_f1:.4f}")
+        print(f"Bottom Acc: {mean_test_bottom_acc:.4f}  IoU: {mean_test_bottom_iou:.4f}")
         print(f"Results saved to: {save_path}")

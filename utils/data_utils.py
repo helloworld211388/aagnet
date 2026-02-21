@@ -127,28 +127,28 @@ def load_one_graph(fn, data):
 
     # Convert node attributes to PyTorch tensors and add them to the graph
     node_attributes = data['graph_face_attr']
-    node_attributes = np.array(node_attributes)
-    node_attributes = torch.from_numpy(node_attributes).type(torch.float32)
+    node_attributes = np.array(node_attributes, dtype=np.float32)
+    node_attributes = torch.from_numpy(node_attributes)
     dgl_graph.ndata["x"] = node_attributes
 
     # Convert and add node grid attributes if they are present
     node_grid_attributes = data['graph_face_grid']
     if len(node_grid_attributes) > 0:
-        node_grid_attributes = np.array(node_grid_attributes)
-        node_grid_attributes = torch.from_numpy(node_grid_attributes).type(torch.float32)
+        node_grid_attributes = np.array(node_grid_attributes, dtype=np.float32)
+        node_grid_attributes = torch.from_numpy(node_grid_attributes)
         dgl_graph.ndata["grid"] = node_grid_attributes
 
     # Convert edge attributes to PyTorch tensors and add them to the graph
     edge_attributes = data['graph_edge_attr']
-    edge_attributes = np.array(edge_attributes)
-    edge_attributes = torch.from_numpy(edge_attributes).type(torch.float32)
+    edge_attributes = np.array(edge_attributes, dtype=np.float32)
+    edge_attributes = torch.from_numpy(edge_attributes)
     dgl_graph.edata["x"] = edge_attributes
 
     # Convert and add edge grid attributes if they are present
     edge_grid_attributes = data['graph_edge_grid']
     if len(edge_grid_attributes) > 0:
-        edge_grid_attributes = np.array(edge_grid_attributes)
-        edge_grid_attributes = torch.from_numpy(edge_grid_attributes).type(torch.float32)
+        edge_grid_attributes = np.array(edge_grid_attributes, dtype=np.float32)
+        edge_grid_attributes = torch.from_numpy(edge_grid_attributes)
         dgl_graph.edata["grid"] = edge_grid_attributes
     
     sample = {"graph": dgl_graph, "filename": fn}
