@@ -11,11 +11,66 @@ from torchmetrics.classification import (
     BinaryAccuracy,
     BinaryF1Score,
     BinaryJaccardIndex)
+from torchmetrics.functional.classification import binary_f1_score
 import wandb
+try:
+    from torch_geometric.utils import negative_sampling as pyg_negative_sampling
+except ImportError:
+    pyg_negative_sampling = None
 
 from dataloader.custom27 import Custom27Dataset
 from models.inst_segmentors import AAGNetSegmentor
 from utils.misc import seed_torch, init_logger, print_num_params
+
+
+def negative_sampling_compat(edge_index, num_nodes, num_neg_samples):
+    if pyg_negative_sampling is not None:
+        return pyg_negative_sampling(
+            edge_index=edge_index,
+            num_nodes=num_nodes,
+            num_neg_samples=num_neg_samples,
+        )
+
+    if num_neg_samples <= 0 or num_nodes <= 0:
+        return torch.empty((2, 0), dtype=torch.long, device=edge_index.device)
+
+    pos_pairs = set(map(tuple, edge_index.t().detach().cpu().tolist()))
+    neg_pairs = set()
+    max_trials = max(num_neg_samples * 20, 1000)
+    trials = 0
+
+    while len(neg_pairs) < num_neg_samples and trials < max_trials:
+        candidates = (num_neg_samples - len(neg_pairs)) * 2
+        rows = torch.randint(0, num_nodes, (candidates,), device=edge_index.device)
+        cols = torch.randint(0, num_nodes, (candidates,), device=edge_index.device)
+        for r, c in zip(rows.tolist(), cols.tolist()):
+            pair = (r, c)
+            if pair in pos_pairs or pair in neg_pairs:
+                continue
+            neg_pairs.add(pair)
+            if len(neg_pairs) >= num_neg_samples:
+                break
+        trials += 1
+
+    if len(neg_pairs) < num_neg_samples:
+        for r in range(num_nodes):
+            for c in range(num_nodes):
+                pair = (r, c)
+                if pair in pos_pairs or pair in neg_pairs:
+                    continue
+                neg_pairs.add(pair)
+                if len(neg_pairs) >= num_neg_samples:
+                    break
+            if len(neg_pairs) >= num_neg_samples:
+                break
+
+    if not neg_pairs:
+        return torch.empty((2, 0), dtype=torch.long, device=edge_index.device)
+
+    neg_edge_index = torch.tensor(
+        list(neg_pairs), dtype=torch.long, device=edge_index.device
+    ).t().contiguous()
+    return neg_edge_index
 
 
 if __name__ == '__main__':
@@ -114,6 +169,7 @@ if __name__ == '__main__':
     test_inst_f1 = BinaryF1Score().to(device)
     test_bottom_acc = BinaryAccuracy().to(device)
     test_bottom_iou = BinaryJaccardIndex().to(device)
+    test_inst_f1_multitaskbrepnet_scores = []
 
     save_path = 'output'
     if not os.path.exists(save_path):
@@ -151,6 +207,41 @@ if __name__ == '__main__':
             test_bottom_acc.update(bottom_pred.sigmoid(), bottom_label.int())
             test_bottom_iou.update(bottom_pred.sigmoid(), bottom_label.int())
 
+            # MultiTaskBrepNet-style instance F1:
+            # sample equal number of negative edges for each graph and compute edge-level F1.
+            batch_num_nodes = g.batch_num_nodes().tolist()
+            for graph_idx, n_nodes in enumerate(batch_num_nodes):
+                n_nodes = int(n_nodes)
+                if n_nodes <= 0:
+                    continue
+
+                pred_adj = inst_pred[graph_idx, :n_nodes, :n_nodes]
+                gt_adj = inst_label[graph_idx, :n_nodes, :n_nodes]
+
+                pos_edge_index = torch.nonzero(gt_adj > 0.5, as_tuple=False).t().contiguous()
+                if pos_edge_index.numel() == 0:
+                    continue
+
+                num_neg_samples = pos_edge_index.size(1)
+                neg_edge_index = negative_sampling_compat(
+                    edge_index=pos_edge_index,
+                    num_nodes=n_nodes,
+                    num_neg_samples=num_neg_samples,
+                )
+                if neg_edge_index.numel() == 0:
+                    continue
+
+                pos_logits = pred_adj[pos_edge_index[0], pos_edge_index[1]]
+                neg_logits = pred_adj[neg_edge_index[0], neg_edge_index[1]]
+                logits = torch.cat([pos_logits, neg_logits], dim=0)
+                preds_prob = torch.sigmoid(logits)
+                labels = torch.cat(
+                    [torch.ones_like(pos_logits), torch.zeros_like(neg_logits)], dim=0
+                ).long()
+                test_inst_f1_multitaskbrepnet_scores.append(
+                    binary_f1_score(preds_prob, labels).item()
+                )
+
             pred_labels = seg_pred.argmax(dim=1)
             for c in range(n_classes):
                 mask = seg_label == c
@@ -162,6 +253,10 @@ if __name__ == '__main__':
         mean_test_seg_iou = test_seg_iou.compute().item()
         mean_test_inst_acc = test_inst_acc.compute().item()
         mean_test_inst_f1 = test_inst_f1.compute().item()
+        mean_test_inst_f1_multitaskbrepnet = (
+            np.mean(test_inst_f1_multitaskbrepnet_scores).item()
+            if test_inst_f1_multitaskbrepnet_scores else 0.0
+        )
         mean_test_bottom_acc = test_bottom_acc.compute().item()
         mean_test_bottom_iou = test_bottom_iou.compute().item()
 
@@ -171,6 +266,7 @@ if __name__ == '__main__':
         logger.info(f'seg_iou:         {mean_test_seg_iou:.4f}')
         logger.info(f'inst_acc:        {mean_test_inst_acc:.4f}')
         logger.info(f'inst_f1:         {mean_test_inst_f1:.4f}')
+        logger.info(f'instance_f1(multitaskbrepnet版): {mean_test_inst_f1_multitaskbrepnet:.4f}')
         logger.info(f'bottom_acc:      {mean_test_bottom_acc:.4f}')
         logger.info(f'bottom_iou:      {mean_test_bottom_iou:.4f}')
 
@@ -186,10 +282,12 @@ if __name__ == '__main__':
         wandb.log({'test_loss': mean_test_loss,
                    'test_seg_acc': mean_test_seg_acc, 'test_seg_iou': mean_test_seg_iou,
                    'test_inst_acc': mean_test_inst_acc, 'test_inst_f1': mean_test_inst_f1,
+                   'test_inst_f1_multitaskbrepnet': mean_test_inst_f1_multitaskbrepnet,
                    'test_bottom_acc': mean_test_bottom_acc, 'test_bottom_iou': mean_test_bottom_iou})
 
         print(f"\n========== Test Complete ==========")
         print(f"Seg  Acc: {mean_test_seg_acc:.4f}  IoU: {mean_test_seg_iou:.4f}")
         print(f"Inst Acc: {mean_test_inst_acc:.4f}  F1:  {mean_test_inst_f1:.4f}")
+        print(f"instance_f1(multitaskbrepnet版): {mean_test_inst_f1_multitaskbrepnet:.4f}")
         print(f"Bottom Acc: {mean_test_bottom_acc:.4f}  IoU: {mean_test_bottom_iou:.4f}")
         print(f"Results saved to: {save_path}")
